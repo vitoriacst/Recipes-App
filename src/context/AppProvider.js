@@ -24,7 +24,9 @@ function AppProvider(props) {
     const emailValid = emailRegex.test(email);
     const passwordValid = password.length > min;
     const validAllFields = emailValid && passwordValid;
-    setButtonState({ btnDisabled: !validAllFields });
+    setButtonState({
+      btnDisabled: !validAllFields,
+    });
   }
 
   function handleChange({ target }) {
@@ -33,10 +35,10 @@ function AppProvider(props) {
 
   const providerValue = {
     loginData,
+    buttonState,
     handleChange,
     setLoginData,
     validate,
-    buttonState,
   };
 
   return (
