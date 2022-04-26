@@ -1,9 +1,14 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('Farewell, front-end', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/TRYBE/i);
-  expect(linkElement).toBeInTheDocument();
+describe('Teste o componente <Login.js>', () => {
+  it('Verifica os data-testids dos elementos')
+  render(<App />);
+  const emailInput = screen.getByTestId("email-input");
+  const passwordInput = screen.getByTestId("password-input");
+  const submitBtn = screen.getByTestId("login-submit-btn");
+  expect(emailInput).toBeInTheDocument();
+  expect(passwordInput).toBeInTheDocument();
+  expect(submitBtn).toBeInTheDocument();
 });
