@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import React from 'react';
 import Profile from '../pages/Profile';
 import Login from '../pages/Login';
@@ -6,10 +6,10 @@ import Login from '../pages/Login';
 function Rotas() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" exact element={ <Login /> } />
-        <Route path="/profile" element={ <Profile /> } />
-      </Routes>
+      <Switch>
+        <Route path="/profile" component={ Profile } />
+        <Route exact path="/" component={ Login } />
+      </Switch>
     </BrowserRouter>
   );
 }
