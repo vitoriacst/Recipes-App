@@ -8,6 +8,7 @@ function Login() {
     handleChange,
     loginData,
     validate,
+    buttonState,
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ function Login() {
           className="enter-login-button"
           type="button"
           data-testid="login-submit-btn"
-          disabled
+          disabled={ buttonState.btnDisabled }
         >
           Enter
         </button>
