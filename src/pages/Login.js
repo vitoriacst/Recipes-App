@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import '../styles/Login.css';
 import cooking from '../images/cooking.svg';
 
 function Login() {
+  const history = useHistory();
   const {
     handleChange,
     loginData,
@@ -14,6 +16,14 @@ function Login() {
   useEffect(() => {
     validate();
   }, [loginData]);
+
+  function submitLogin() {
+    localStorage.setItem('mealsToken', '1');
+    localStorage.setItem('cocktailsToken', '1');
+    const email = JSON.stringify({ email: loginData.email });
+    localStorage.setItem('user', email);
+    history.push('/foods');
+  }
 
   return (
     <div className="login-container">
@@ -41,6 +51,7 @@ function Login() {
           type="button"
           data-testid="login-submit-btn"
           disabled={ buttonState.btnDisabled }
+          onClick={ submitLogin }
         >
           Enter
         </button>
