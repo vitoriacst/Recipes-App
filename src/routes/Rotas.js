@@ -1,18 +1,18 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import React from 'react';
 import Profile from '../pages/Profile';
 import Login from '../pages/Login';
+import Foods from '../pages/Foods';
 import BarraDeBusca from '../components/BarraDeBusca';
 
 function Rotas() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/profile" component={ Profile } />
-        <Route path="/teste" component={ BarraDeBusca } />
-        <Route exact path="/" component={ Login } />
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route path="/profile" component={ Profile } />
+      <Route path="/foods" component={ Foods } />
+      <Route path="/teste" component={ BarraDeBusca } />
+      <Route exact path="/" component={ Login } />
+    </Switch>
   );
 }
 
