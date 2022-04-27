@@ -7,7 +7,7 @@
 
 .main-header {
   align-items: center;
-  display:flex;
+  display: flex;
   flex-direction: column;
   height: 10px;
   justify-content: space-between;
