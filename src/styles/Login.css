@@ -13,7 +13,6 @@
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   gap: 30px;
   height: 580px;
   justify-content: center;
@@ -30,8 +29,8 @@
 
 .enter-login-button {
   background-color: white;
-  border-radius: 5px;
   border: none;
+  border-radius: 5px;
   color: grey;
   cursor: pointer;
   font-family: 'Press Start 2P', cursive;
@@ -43,15 +42,15 @@
   width: 50%;
 }
 
-.enter-login-button:disabled{
+.enter-login-button:disabled {
   cursor: not-allowed;
   opacity: 10%;
 }
 
 .password-login-input {
-  background-color: rgb(216, 207, 207);
+  background-color: grey;
   border-radius: 5px;
-  color: rgb(0, 0, 0);
+  color: black;
   display: flex;
   flex-direction: column;
   margin: 7px 0;
@@ -59,7 +58,7 @@
 }
 
 .email-login-input {
-  background-color: rgb(216, 207, 207);
+  background-color: grey;
   border-radius: 5px;
   color: rgb(0, 0, 0);
   display: flex;
@@ -69,11 +68,11 @@
 }
 
 body::-webkit-scrollbar {
-  border: 1px solid rgb(0, 0, 0);
+  border: 1px solid black;
   width: 15px;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color:rgb(255, 255, 255);
+  background-color:white;
   border-radius: 6px;
 }
