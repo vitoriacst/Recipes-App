@@ -14,12 +14,13 @@ function AppProvider(props) {
   };
 
   const [recipes, setRecipes] = useState([]);
-  const [recipeType, setRecipeType] = useState('meals');
+  const [recipeType, setRecipeType] = useState('drinks');
   const [api, setApi] = useState('thecocktaildb');
   const [searchValue, setSearchValue] = useState('');
   const [searchEl, setSearchEl] = useState('');
   const [loginData, setLoginData] = useState(INITIAL_LOGIN);
   const [buttonState, setButtonState] = useState(INITIAL_BTN);
+  const [searchBar, setSearchBar] = useState(false);
 
   function validate() {
     const { email, password } = loginData;
@@ -53,6 +54,8 @@ function AppProvider(props) {
     setApi,
     recipeType,
     setRecipeType,
+    searchBar,
+    setSearchBar,
   };
 
   return (

@@ -37,17 +37,26 @@ function BarraDeBusca() {
       .then((res) => res)
       .catch(() => ({ message: 'JSON inválido' }));
 
+    // if () {
+    //   global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    //   return;
+    // }
+
     if (results.message) {
-      global.alert('Não achei nada!');
-      return;
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
+
     const idKey = recipeType === 'drinks' ? 'idDrink' : 'idMeal';
-    if (results[recipeType].length === 1) {
+    const UrlKey = recipeType === 'drinks' ? 'drinks' : 'foods';
+    if (!results[recipeType]) {
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    } else if (results[recipeType].length === 1) {
       console.log(results[recipeType][0][idKey]);
-      history.replace(`/${recipeType}/${results[recipeType][0][idKey]}`);
+      history.replace(`/${UrlKey}/${results[recipeType][0][idKey]}`);
     } else if (results[recipeType].length > 1) {
+      const number = 12;
       console.log(results[recipeType]);
-      setRecipes(results[recipeType]);
+      setRecipes(results[recipeType].filter((drink, index) => index < number));
     }
   }
 

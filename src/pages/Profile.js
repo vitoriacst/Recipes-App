@@ -2,6 +2,6 @@ import React from 'react';
 
 export default function Profile() {
   return (
-    <h1>Profile</h1>
+    <h1 data-testid="page-title">Profile</h1>
   );
 }

@@ -1,29 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import AppContext from '../context/AppContext';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import '../styles/Header.css';
+import BarraDeBusca from './BarraDeBusca';
 
 export default function Header() {
+  const { setSearchBar, searchBar } = useContext(AppContext);
+
   return (
-    <header
-      data-testid=""
-      className="main-header"
-    >
-      <Link to="/profile">
+    <div className="main-header">
+      <header
+        data-testid="page-title"
+      >
+        <Link to="/profile">
+          <button
+            type="button"
+
+          >
+            <img src={ profileIcon } alt="profile icon" data-testid="profile-top-btn" />
+          </button>
+        </Link>
         <button
           type="button"
-          data-testid="profile-top-btn"
+          onClick={ setSearchBar }
         >
-          <img src={ profileIcon } alt="profile icon" />
+          <img src={ searchIcon } alt=" search icon" data-testid="search-top-btn" />
         </button>
-      </Link>
-      <button
-        type="button"
-        data-testid="search-top-btn"
-      >
-        <img src={ searchIcon } alt=" search icon" />
-      </button>
-    </header>
+      </header>
+      {
+        searchBar && (
+          <BarraDeBusca />
+        )
+      }
+    </div>
   );
 }
