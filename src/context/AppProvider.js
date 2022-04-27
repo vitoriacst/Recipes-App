@@ -4,7 +4,6 @@ import AppContext from './AppContext';
 
 function AppProvider(props) {
   const { children } = props;
-
   const INITIAL_BTN = {
     btnDisabled: true,
   };

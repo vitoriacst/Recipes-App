@@ -47,7 +47,8 @@
 }
 
 .enter-login-button:disabled{
-    background-color: rgb(161, 17, 17);
+    opacity: 10%;
+    cursor: not-allowed;
 }
 
 
