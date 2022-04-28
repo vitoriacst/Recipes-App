@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
-import '../styles/Login.css';
 import cooking from '../images/cooking.svg';
+import '../styles/Login.css';
 
 function Login() {
   const history = useHistory();
