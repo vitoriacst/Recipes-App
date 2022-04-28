@@ -1,11 +1,20 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Profile() {
+  const history = useHistory();
+  const user = JSON.parse(localStorage.getItem('user'));
+  const handleClick = () => {
+    localStorage.clear();
+    history.push('/');
+  };
+
+  console.log(user);
   return (
     <div className="main-perfil">
       <h1 data-testid="page-title">Profile</h1>
-      <p data-testid="profile-email">email</p>
+      <p data-testid="profile-email">{user.email}</p>
       <Link to="/done-recipes">
         <button
           type="button"
@@ -26,7 +35,14 @@ function Profile() {
 
         </button>
       </Link>
-      <button type="button" data-testid="profile-logout-btn">Logout</button>
+      <button
+        type="button"
+        data-testid="profile-logout-btn"
+        onClick={ handleClick }
+      >
+        Logout
+
+      </button>
     </div>
   );
 }
