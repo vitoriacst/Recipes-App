@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import '../styles/Login.css';
-import cooking from '../images/cooking.svg';
 
 function Login() {
   const history = useHistory();
@@ -27,7 +26,6 @@ function Login() {
 
   return (
     <div className="login-container">
-      <img src={ cooking } alt="woman cooking" className="woman-cooking-image" />
       <form className="form-input">
         <input
           className="email-login-input"
