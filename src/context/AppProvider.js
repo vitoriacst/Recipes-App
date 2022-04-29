@@ -15,6 +15,9 @@ function AppProvider(props) {
 
   const [recipes, setRecipes] = useState([]);
   const [recipeType, setRecipeType] = useState('drinks');
+  const [recipeDetails, setRecipeDetails] = useState('drinks');
+  const [recommendations, setRecommendation] = useState();
+  const [sugestPosition, setSugestPosition] = useState([0, 1]);
   const [api, setApi] = useState('thecocktaildb');
   const [searchValue, setSearchValue] = useState('');
   const [searchEl, setSearchEl] = useState('');
@@ -56,6 +59,12 @@ function AppProvider(props) {
     setRecipeType,
     searchBar,
     setSearchBar,
+    recipeDetails,
+    setRecipeDetails,
+    setRecommendation,
+    recommendations,
+    sugestPosition,
+    setSugestPosition,
   };
 
   return (
