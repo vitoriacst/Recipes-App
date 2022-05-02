@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Card from '../components/Card';
 import AppContext from '../context/AppContext';
+import MenuInferior from '../components/MenuInferior';
 
 function Drinks() {
   const { recipes, setRecipes, setApi, setRecipeType } = useContext(AppContext);
@@ -41,6 +42,7 @@ function Drinks() {
       <Header />
       <h1 data-testid="page-title">Drinks</h1>
       {cards}
+      <MenuInferior />
     </div>
   );
 }

@@ -2,14 +2,17 @@ import React from 'react';
 import MenuInferior from '../components/MenuInferior';
 import Header from '../components/Header';
 
-function ExploreDrinks() {
+function RecipesNationality() {
   return (
     <div>
-      <h1 data-testid="page-title">Explore Drinks</h1>
       <Header />
+      <h1 data-testid="page-title">
+        Explore Nationalities
+
+      </h1>
       <MenuInferior />
     </div>
   );
 }
 
-export default ExploreDrinks;
+export default RecipesNationality;

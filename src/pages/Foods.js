@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import AppContext from '../context/AppContext';
 import Card from '../components/Card';
+import MenuInferior from '../components/MenuInferior';
 
 export default function Foods() {
   const { recipes, setRecipes, setApi, setRecipeType } = useContext(AppContext);
@@ -40,6 +41,7 @@ export default function Foods() {
       <Header />
       <h1 data-testid="page-title">Foods</h1>
       {cards}
+      <MenuInferior />
     </div>
   );
 }

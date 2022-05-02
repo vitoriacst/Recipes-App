@@ -11,6 +11,9 @@ import ScreenExplore from '../pages/ScreenExplore';
 import ExploreFoods from '../pages/ExploreFoods';
 import ExploreDrinks from '../pages/ExploreDrinks';
 import RecipeDetails from '../pages/RecipeDetails';
+import FoodsIngredients from '../pages/FoodsIngredients';
+import DrinksIngredients from '../pages/DrinksIngredients';
+import RecipesNationality from '../pages/RecipesNationality';
 
 function Rotas() {
   return (
@@ -27,6 +30,9 @@ function Rotas() {
       <Route exact path="/explore" component={ ScreenExplore } />
       <Route exact path="/explore/foods" component={ ExploreFoods } />
       <Route exact path="/explore/drinks" component={ ExploreDrinks } />
+      <Route exact path="/explore/foods/ingredients" component={ FoodsIngredients } />
+      <Route exact path="/explore/drinks/ingredients" component={ DrinksIngredients } />
+      <Route exact path="/explore/foods/nationalities" component={ RecipesNationality } />
     </Switch>
   );
 }
