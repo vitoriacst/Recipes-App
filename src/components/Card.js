@@ -1,11 +1,18 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Card = ({ thumb, index, name }) => (
-  <div data-testid={ `${index}-recipe-card` }>
-    <h1 data-testid={ `${index}-card-name` }>{ name }</h1>
-    <img src={ thumb } data-testid={ `${index}-card-img` } alt={ name } />
-  </div>
+const Card = ({ thumb, index, name, id, recipe }) => (
+  <Link to={ `/${recipe}/${id}` }>
+    <div data-testid={ `${index}-recipe-card` }>
+      <h1 data-testid={ `${index}-card-name` }>{ name }</h1>
+      <img
+        src={ thumb }
+        data-testid={ `${index}-card-img` }
+        alt={ name }
+      />
+    </div>
+  </Link>
 );
 
 Card.propTypes = {
