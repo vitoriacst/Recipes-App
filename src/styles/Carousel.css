@@ -1,0 +1,61 @@
+/* !!! atenção ao mexer nesse CSS alguns requisitos dependem de display none !!!! */
+.items-wrapper {
+  width: 80vw;
+}
+
+.items {
+  display: flex;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+.item {
+  flex: none;
+  height: 200px;
+  scroll-snap-align: start;
+  width: 50%;
+}
+
+.item-hidden {
+  display: none;
+  scroll-snap-align: start;
+  width: 50%;
+}
+
+.card {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.carousel-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.previous-btn {
+  opacity: 0.5;
+}
+
+.next-btn {
+  opacity: 0.5;
+}
+
+.previous-btn:hover, .next-btn:hover {
+  opacity: 1;
+}
+
+.start-recipe-btn {
+  bottom: 0;
+  position: fixed;
+}
+
+.start-recipe-btn-hidden {
+  bottom: 0;
+  display: none;
+  position: fixed;
+}

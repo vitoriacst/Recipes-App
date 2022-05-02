@@ -6,6 +6,7 @@
     "node": "16"
   },
   "dependencies": {
+    "@glidejs/glide": "^3.5.2",
     "@sheerun/mutationobserver-shim": "^0.3.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
