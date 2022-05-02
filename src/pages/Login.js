@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
-import cooking from '../images/cooking.svg';
 import '../styles/Login.css';
 
 function Login() {
