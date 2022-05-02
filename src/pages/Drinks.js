@@ -42,15 +42,11 @@ function Drinks() {
 
   const filterByCategory = async ({ target }) => {
     const { value } = target;
-    // regex para modificar a categoria Ordinary Drink e conseguir o endpoint necessario;
-    // const category = value.replace(/\s+/g, '_');
     const endPoint = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${value}`;
-    console.log(endPoint);
     const response = await fetch(endPoint);
     const data = await response.json();
     const number = 12;
     const dataFiltered = data.drinks.filter((_category, index) => index < number);
-    console.log(dataFiltered);
     setRecipes(dataFiltered);
   };
 
