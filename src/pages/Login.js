@@ -26,7 +26,6 @@ function Login() {
 
   return (
     <div className="login-container">
-      <img src={ cooking } alt="woman cooking" className="woman-cooking-image" />
       <form className="form-input">
         <input
           className="email-login-input"
