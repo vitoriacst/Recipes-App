@@ -1,12 +1,14 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Card from '../components/Card';
 import Header from '../components/Header';
 import AppContext from '../context/AppContext';
 
-function Drinks() {
+export default function Drinks() {
   const { recipes, setRecipes, setApi, setRecipeType } = useContext(AppContext);
   const [cards, setCards] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [recipesFiltered, setRecipesFiltered] = useState(recipes);
+  const [selected, setSelected] = useState('All');
 
   async function requisicao() {
     const endPoint = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
@@ -15,6 +17,7 @@ function Drinks() {
     const number = 12;
     // coloquei o underline antes do parametro drink para nao deixar parametro 'solto';
     setRecipes(data.drinks.filter((_drink, index) => index < number));
+    setRecipesFiltered(data.drinks.filter((_drink, index) => index < number));
   }
 
   const fetchCategories = async () => {
@@ -27,27 +30,39 @@ function Drinks() {
     setCategories(dataFiltered.map((category) => category.strCategory));
   };
 
-  // comentar com galera o useCallback();
-  const renderCard = useCallback(() => {
-    const newCards = recipes.map((recipe, index) => (
+  const renderCard = (array) => {
+    const newCards = array.map((recipe, index) => (
       <Card
         key={ recipe.strDrink }
         thumb={ recipe.strDrinkThumb }
         index={ index }
         name={ recipe.strDrink }
+        id={ recipe.idDrink }
+        recipe="drinks"
       />
     ));
     setCards(newCards);
-  }, [recipes]);
+  };
 
   const filterByCategory = async ({ target }) => {
     const { value } = target;
-    const endPoint = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${value}`;
-    const response = await fetch(endPoint);
-    const data = await response.json();
-    const number = 12;
-    const dataFiltered = data.drinks.filter((_category, index) => index < number);
-    setRecipes(dataFiltered);
+    if (value === selected) {
+      setRecipesFiltered(recipes);
+      setSelected('All');
+    } else {
+      const endPoint = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${value}`;
+      const response = await fetch(endPoint);
+      const data = await response.json();
+      const number = 12;
+      const dataFiltered = data.drinks.filter((_category, index) => index < number);
+      setRecipesFiltered(dataFiltered);
+      setSelected(value);
+    }
+  };
+
+  const removeFilter = () => {
+    setRecipesFiltered(recipes);
+    setSelected('All');
   };
 
   useEffect(() => {
@@ -58,8 +73,8 @@ function Drinks() {
   }, []);
 
   useEffect(() => {
-    renderCard();
-  }, [recipes, renderCard]);
+    renderCard(recipesFiltered);
+  }, [recipesFiltered]);
 
   return (
     <div className="main-foods">
@@ -77,9 +92,17 @@ function Drinks() {
             {categoryName}
           </button>))
       }
+      {
+        <button
+          type="button"
+          data-testid="All-category-filter"
+          onClick={ removeFilter }
+          value="All"
+        >
+          All
+        </button>
+      }
       {cards}
     </div>
   );
 }
-
-export default Drinks;

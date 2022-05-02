@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Card from '../components/Card';
 import Header from '../components/Header';
 import AppContext from '../context/AppContext';
@@ -7,6 +7,8 @@ export default function Foods() {
   const { recipes, setRecipes, setApi, setRecipeType } = useContext(AppContext);
   const [cards, setCards] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [recipesFiltered, setRecipesFiltered] = useState(recipes);
+  const [selected, setSelected] = useState('All');
 
   async function requisicao() {
     const endPoint = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
@@ -15,6 +17,7 @@ export default function Foods() {
     const number = 12;
     // coloquei o underline antes do parametro meal para nao deixar parametro 'solto';
     setRecipes(data.meals.filter((_meal, index) => index < number));
+    setRecipesFiltered(data.meals.filter((_meal, index) => index < number));
   }
 
   const fetchCategories = async () => {
@@ -27,27 +30,39 @@ export default function Foods() {
     setCategories(dataFiltered.map((category) => category.strCategory));
   };
 
-  // comentar com galera o useCallback();
-  const renderCard = useCallback(() => {
-    const newCards = recipes.map((recipe, index) => (
+  const renderCard = (array) => {
+    const newCards = array.map((recipe, index) => (
       <Card
         key={ recipe.strMeal }
         thumb={ recipe.strMealThumb }
         index={ index }
         name={ recipe.strMeal }
+        id={ recipe.idMeal }
+        recipe="foods"
       />
     ));
     setCards(newCards);
-  }, [recipes]);
+  };
 
   const filterByCategory = async ({ target }) => {
     const { value } = target;
-    const endPoint = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${value}`;
-    const response = await fetch(endPoint);
-    const data = await response.json();
-    const number = 12;
-    const dataFiltered = data.meals.filter((_category, index) => index < number);
-    setRecipes(dataFiltered);
+    if (value === selected) {
+      setRecipesFiltered(recipes);
+      setSelected('All');
+    } else {
+      const endPoint = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${value}`;
+      const response = await fetch(endPoint);
+      const data = await response.json();
+      const number = 12;
+      const dataFiltered = data.meals.filter((_category, index) => index < number);
+      setRecipesFiltered(dataFiltered);
+      setSelected(value);
+    }
+  };
+
+  const removeFilter = () => {
+    setRecipesFiltered(recipes);
+    setSelected('All');
   };
 
   useEffect(() => {
@@ -58,8 +73,8 @@ export default function Foods() {
   }, []);
 
   useEffect(() => {
-    renderCard();
-  }, [recipes, renderCard]);
+    renderCard(recipesFiltered);
+  }, [recipesFiltered]);
 
   return (
     <div className="main-foods">
@@ -76,6 +91,16 @@ export default function Foods() {
           >
             {categoryName}
           </button>))
+      }
+      {
+        <button
+          type="button"
+          data-testid="All-category-filter"
+          onClick={ removeFilter }
+          value="All"
+        >
+          All
+        </button>
       }
       {cards}
     </div>
