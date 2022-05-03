@@ -27,8 +27,6 @@ function Carousel(props) {
     }
   }
 
-  const sugest = type === 'strDrink' ? 'strMeal' : 'strDrink';
-
   async function getDrinks() {
     const max = 6;
     const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
@@ -46,7 +44,7 @@ function Carousel(props) {
   }
 
   function getRecipes() {
-    return type === 'strMeal' ? getDrinks() : getFoods();
+    return type === 'strMeal' ? getFoods() : getDrinks();
   }
 
   useEffect(() => {
@@ -68,14 +66,14 @@ function Carousel(props) {
             <div className="items">
               {recommendations.map((recipe, index) => (
                 <div
-                  key={ recipe[sugest] }
+                  key={ `card${index}` }
                   data-testid={ `${index}-recomendation-card` }
                   className={ sugestPosition.includes(index) ? 'item' : 'item-hidden' }
                 >
-                  <h3 data-testid={ `${index}-recomendation-title` }>{recipe[sugest]}</h3>
+                  <h3 data-testid={ `${index}-recomendation-title` }>{recipe[type]}</h3>
                   <img
                     className="card"
-                    src={ recipe[`${sugest}Thumb`] }
+                    src={ recipe[`${type}Thumb`] }
                     alt="pro"
                   />
                 </div>
