@@ -11,6 +11,7 @@ function BarraDeBusca() {
     searchValue,
     setRecipes,
     recipeType,
+    setRecipesFiltered,
   } = useContext(AppContext);
 
   const history = useHistory();
@@ -55,7 +56,7 @@ function BarraDeBusca() {
       history.replace(`/${UrlKey}/${results[recipeType][0][idKey]}`);
     } else if (results[recipeType].length > 1) {
       const number = 12;
-      console.log(results[recipeType]);
+      setRecipesFiltered(results[recipeType].filter((drink, index) => index < number));
       setRecipes(results[recipeType].filter((drink, index) => index < number));
     }
   }
