@@ -6,7 +6,6 @@ import Header from '../components/Header';
 const ScreenExplore = () => (
   <>
     <Header />
-
     <div className="main-explore">
       <Link to="/explore/foods">
         <button data-testid="explore-foods" type="button">Explore Foods</button>

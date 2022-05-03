@@ -6,11 +6,7 @@ const Card = ({ thumb, index, name, id, recipe }) => (
   <Link to={ `/${recipe}/${id}` }>
     <div data-testid={ `${index}-recipe-card` }>
       <h1 data-testid={ `${index}-card-name` }>{ name }</h1>
-      <img
-        src={ thumb }
-        data-testid={ `${index}-card-img` }
-        alt={ name }
-      />
+      <img src={ thumb } data-testid={ `${index}-card-img` } alt={ name } />
     </div>
   </Link>
 );
