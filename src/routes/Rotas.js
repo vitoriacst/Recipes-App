@@ -13,7 +13,8 @@ import Foods from '../pages/Foods';
 import FoodsIngredients from '../pages/FoodsIngredients';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
-import RecipeInProgress from '../pages/RecipeInProgress';
+import FoodsInProgress from '../pages/FoodsInProgress';
+import DrinksInProgress from '../pages/DrinksInProgress';
 import RecipesNationality from '../pages/RecipesNationality';
 import ScreenExplore from '../pages/ScreenExplore';
 
@@ -23,10 +24,10 @@ function Rotas() {
       <Route path="/profile" component={ Profile } />
       <Route exact path="/foods" component={ Foods } />
       <Route exact path="/foods/:idMeal" component={ FoodDetails } />
-      <Route exact path="/foods/:idMeal/in-progress" component={ RecipeInProgress } />
+      <Route exact path="/foods/:idMeal/in-progress" component={ FoodsInProgress } />
       <Route exact path="/drinks" component={ Drinks } />
       <Route exact path="/drinks/:idDrink" component={ DrinkDetails } />
-      <Route exact path="/drinks/:idDrink/in-progress" component={ RecipeInProgress } />
+      <Route exact path="/drinks/:idDrink/in-progress" component={ DrinksInProgress } />
       <Route path="/teste" component={ BarraDeBusca } />
       <Route exact path="/" component={ Login } />
       <Route exact path="/done-recipes" component={ DoneRecipes } />

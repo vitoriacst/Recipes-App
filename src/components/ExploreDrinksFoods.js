@@ -1,10 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 function ExploreDrinksFoods() {
+  const [randomUrl, setUrlRandom] = useState();
   const match = useRouteMatch();
   const notRender = ['/explore/drinks'];
   const foodRender = ['/explore/foods'];
+
+  async function getIdFood() {
+    const endPoint = 'https://www.themealdb.com/api/json/v1/1/random.php';
+    const response = await fetch(endPoint);
+    const data = await response.json();
+    const values = Object.values(data);
+    const id = Object.values(values[0]);
+    const idReturn = Object.values(id[0]);
+    setUrlRandom(`/foods/${idReturn[0]}`);
+  }
+
+  async function getIdDrink() {
+    const endPoint = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+    const response = await fetch(endPoint);
+    const data = await response.json();
+    const values = Object.values(data);
+    const id = Object.values(values[0]);
+    const idReturn = Object.values(id[0]);
+    setUrlRandom(`/drinks/${idReturn[0]}`);
+  }
+  function getId() {
+    const { path } = match;
+    return path.includes('foods')
+      ? getIdFood()
+      : getIdDrink();
+  }
+
+  useEffect(() => {
+    getId();
+  }, []);
+
   return (
     <>
       {
@@ -36,11 +68,16 @@ function ExploreDrinksFoods() {
           </Link>
         )
       }
-      <Link to="/explore">
-        <button type="button" data-testid="explore-surprise">
+
+      <Link to={ randomUrl }>
+        <button
+          type="button"
+          data-testid="explore-surprise"
+        >
           Surprise me!
         </button>
       </Link>
+
     </>
   );
 }
