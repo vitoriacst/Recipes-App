@@ -3,8 +3,15 @@ import { useRouteMatch, useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import '../styles/RecipeDetails.css';
 import Carousel from '../components/Carousel';
-import { recipesInProgress, thisRecipeIsDone } from '../helpers/recipeState';
+import {
+  addFavoriteRecipe,
+  removeFavorite,
+  recipesInProgress,
+  thisRecipeIsDone,
+  thisRecipeIsFavorite } from '../helpers/recipeState';
 import shareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function FoodDetails() {
   const {
@@ -26,6 +33,7 @@ function FoodDetails() {
   const [ingredients, setIngredients] = useState([]);
   const [youtubeLink, setYoutubeLink] = useState('');
   const [recipeDone, setRecipeDone] = useState(false);
+  const [recipeFavorite, setRecipeFavorite] = useState(false);
   const [recipeProgress, setRecipeProgress] = useState();
   const [linkCopied, setLinkCopied] = useState(false);
 
@@ -55,6 +63,12 @@ function FoodDetails() {
     setLinkCopied(true);
   }
 
+  function handleFavorite() {
+    setRecipeFavorite(!recipeFavorite);
+    return recipeFavorite
+      ? removeFavorite(idRecipe) : addFavoriteRecipe(recipeDetails, 'food');
+  }
+
   function organizeIngredients() {
     const ingredientsArray = [];
     const limit = 16;
@@ -72,13 +86,14 @@ function FoodDetails() {
     getRecipe();
     setRecipeDone(thisRecipeIsDone(idRecipe));
     setRecipeProgress(recipesInProgress(idRecipe, 'meals'));
+    setRecipeFavorite(thisRecipeIsFavorite(idRecipe));
   }, []);
 
   useEffect(() => {
     organizeIngredients();
     handleYoutubeLink();
   }, [recipeDetails]);
-
+  console.log(recipeDetails);
   return (
     <div>
       <img
@@ -130,9 +145,13 @@ function FoodDetails() {
       <button
         className="favorite-btn"
         type="button"
-        data-testid="favorite-btn"
+        onClick={ handleFavorite }
       >
-        Favoritar
+        <img
+          data-testid="favorite-btn"
+          src={ recipeFavorite ? blackHeartIcon : whiteHeartIcon }
+          alt="share Icon"
+        />
       </button>
       <Carousel type="strDrink" />
       {!recipeDone && (

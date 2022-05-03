@@ -15,3 +15,39 @@ export function recipesInProgress(idRecipe, type) {
     }
   }
 }
+
+export function thisRecipeIsFavorite(idRecipe) {
+  const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  if (favoriteRecipes) {
+    const idfavoriteRecipes = favoriteRecipes[0].id;
+    return idfavoriteRecipes.includes(idRecipe);
+  }
+}
+
+export function addFavoriteRecipe(recipeDetails, type) {
+  const recipe = {
+    id: type === 'drink' ? recipeDetails.idDrink : recipeDetails.idMeal,
+    type,
+    nationality: recipeDetails.strArea ? recipeDetails.strArea : '',
+    category: recipeDetails.strCategory,
+    alcoholicOrNot: recipeDetails.strAlcoholic ? recipeDetails.strAlcoholic : '',
+    name: type === 'drink' ? recipeDetails.strDrink : recipeDetails.strMeal,
+    image: type === 'drink' ? recipeDetails.strDrinkThumb : recipeDetails.strMealThumb,
+  };
+  const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  if (favoriteRecipes) {
+    const newFavorites = JSON.stringify([...favoriteRecipes, recipe]);
+    localStorage.setItem('favoriteRecipes', newFavorites);
+  } else {
+    const newFavorites = JSON.stringify([recipe]);
+    localStorage.setItem('favoriteRecipes', newFavorites);
+  }
+}
+
+export function removeFavorite(idRecipe) {
+  const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const filter = favoriteRecipes.filter((recipe) => recipe.id !== idRecipe);
+  const newFavorites = JSON.stringify(filter);
+  console.log(newFavorites);
+  localStorage.setItem('favoriteRecipes', newFavorites);
+}
