@@ -3,15 +3,21 @@ import { useRouteMatch, useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import '../styles/RecipeDetails.css';
 import Carousel from '../components/Carousel';
-import { recipesInProgress, thisRecipeIsDone } from '../helpers/recipeState';
+import {
+  addFavoriteRecipe,
+  removeFavorite,
+  recipesInProgress,
+  thisRecipeIsDone,
+  thisRecipeIsFavorite } from '../helpers/recipeState';
 import shareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function DrinkDetails() {
   const {
     recipeDetails,
     setRecipeDetails,
   } = useContext(AppContext);
-
   const history = useHistory();
   const match = useRouteMatch();
 
@@ -26,6 +32,7 @@ function DrinkDetails() {
   const [alcoholic, setAlcoholic] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [recipeDone, setRecipeDone] = useState(false);
+  const [recipeFavorite, setRecipeFavorite] = useState(false);
   const [recipeProgress, setRecipeProgress] = useState();
   const [linkCopied, setLinkCopied] = useState(false);
 
@@ -65,10 +72,17 @@ function DrinkDetails() {
     setLinkCopied(true);
   }
 
+  function handleFavorite() {
+    setRecipeFavorite(!recipeFavorite);
+    return recipeFavorite
+      ? removeFavorite(idRecipe) : addFavoriteRecipe(recipeDetails, 'drink');
+  }
+
   useEffect(() => {
     getRecipe();
     setRecipeDone(thisRecipeIsDone(idRecipe));
     setRecipeProgress(recipesInProgress(idRecipe, 'cocktails'));
+    setRecipeFavorite(thisRecipeIsFavorite(idRecipe));
   }, []);
 
   useEffect(() => {
@@ -118,9 +132,13 @@ function DrinkDetails() {
       <button
         className="favorite-btn"
         type="button"
-        data-testid="favorite-btn"
+        onClick={ handleFavorite }
       >
-        Favoritar
+        <img
+          data-testid="favorite-btn"
+          src={ recipeFavorite ? blackHeartIcon : whiteHeartIcon }
+          alt="share Icon"
+        />
       </button>
       <Carousel type="strMeal" />
       {!recipeDone && (
