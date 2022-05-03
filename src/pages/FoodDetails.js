@@ -4,6 +4,7 @@ import AppContext from '../context/AppContext';
 import '../styles/RecipeDetails.css';
 import Carousel from '../components/Carousel';
 import { recipesInProgress, thisRecipeIsDone } from '../helpers/recipeState';
+import shareIcon from '../images/shareIcon.svg';
 
 function FoodDetails() {
   const {
@@ -12,6 +13,7 @@ function FoodDetails() {
   } = useContext(AppContext);
 
   const history = useHistory();
+  const match = useRouteMatch();
 
   const {
     strMeal,
@@ -27,9 +29,7 @@ function FoodDetails() {
   const [recipeProgress, setRecipeProgress] = useState();
   const [linkCopied, setLinkCopied] = useState(false);
 
-  const match = useRouteMatch();
   const idRecipe = Object.values(match.params)[0];
-
   const endPoint = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idRecipe}`;
 
   async function getRecipe() {
@@ -124,7 +124,7 @@ function FoodDetails() {
         data-testid="share-btn"
         onClick={ copyToClipBoard }
       >
-        Compartilhar
+        <img src={ shareIcon } alt="share Icon" />
       </button>
       {linkCopied && <span>Link copied!</span>}
       <button

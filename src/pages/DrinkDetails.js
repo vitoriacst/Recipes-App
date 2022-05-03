@@ -4,6 +4,7 @@ import AppContext from '../context/AppContext';
 import '../styles/RecipeDetails.css';
 import Carousel from '../components/Carousel';
 import { recipesInProgress, thisRecipeIsDone } from '../helpers/recipeState';
+import shareIcon from '../images/shareIcon.svg';
 
 function DrinkDetails() {
   const {
@@ -111,7 +112,7 @@ function DrinkDetails() {
         data-testid="share-btn"
         onClick={ copyToClipBoard }
       >
-        Compartilhar
+        <img src={ shareIcon } alt="share Icon" />
       </button>
       {linkCopied && <span>Link copied!</span>}
       <button
