@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import Card from '../components/Card';
 import Header from '../components/Header';
 import AppContext from '../context/AppContext';
-import Card from '../components/Card';
 import MenuInferior from '../components/MenuInferior';
 
 export default function Foods() {
