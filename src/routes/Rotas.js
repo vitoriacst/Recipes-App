@@ -10,8 +10,6 @@ import FavoritesRecipes from '../pages/FavoritesRecipes';
 import ScreenExplore from '../pages/ScreenExplore';
 import ExploreFoods from '../pages/ExploreFoods';
 import ExploreDrinks from '../pages/ExploreDrinks';
-import RecipeDetails from '../pages/RecipeDetails';
-import FoodsIngredients from '../pages/FoodsIngredients';
 import DrinksIngredients from '../pages/DrinksIngredients';
 import RecipesNationality from '../pages/RecipesNationality';
 import FoodDetails from '../pages/FoodDetails';
