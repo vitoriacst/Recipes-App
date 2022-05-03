@@ -1,13 +1,11 @@
 import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import drinkIncon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
 import '../styles/Footer.css';
 
 function MenuInferior() {
-  const match = useRouteMatch();
-  console.log(match.path);
   return (
     <div data-testid="footer" className="main-footer">
       <footer>
