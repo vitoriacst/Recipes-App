@@ -5,6 +5,7 @@ const Card = ({ thumb, index, name }) => (
   <div data-testid={ `${index}-recipe-card` }>
     <h1 data-testid={ `${index}-card-name` }>{ name }</h1>
     <img src={ thumb } data-testid={ `${index}-card-img` } alt={ name } />
+    {/* <h1 data-testid={ `${index}-ingredient-card` }>{name}</h1> */}
   </div>
 );
 
