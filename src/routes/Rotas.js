@@ -1,20 +1,21 @@
-import { Route, Switch } from 'react-router-dom';
 import React from 'react';
-import Profile from '../pages/Profile';
-import Login from '../pages/Login';
-import Foods from '../pages/Foods';
+import { Route, Switch } from 'react-router-dom';
 import BarraDeBusca from '../components/BarraDeBusca';
-import Drinks from '../pages/Drinks';
 import DoneRecipes from '../pages/DoneRecipes';
-import FavoritesRecipes from '../pages/FavoritesRecipes';
-import ScreenExplore from '../pages/ScreenExplore';
-import ExploreFoods from '../pages/ExploreFoods';
-import ExploreDrinks from '../pages/ExploreDrinks';
-import DrinksIngredients from '../pages/DrinksIngredients';
-import RecipesNationality from '../pages/RecipesNationality';
-import FoodDetails from '../pages/FoodDetails';
 import DrinkDetails from '../pages/DrinkDetails';
+import Drinks from '../pages/Drinks';
+import DrinksIngredients from '../pages/DrinksIngredients';
+import ExploreDrinks from '../pages/ExploreDrinks';
+import ExploreFoods from '../pages/ExploreFoods';
+import FavoritesRecipes from '../pages/FavoritesRecipes';
+import FoodDetails from '../pages/FoodDetails';
+import Foods from '../pages/Foods';
+import FoodsIngredients from '../pages/FoodsIngredients';
+import Login from '../pages/Login';
+import Profile from '../pages/Profile';
 import RecipeInProgress from '../pages/RecipeInProgress';
+import RecipesNationality from '../pages/RecipesNationality';
+import ScreenExplore from '../pages/ScreenExplore';
 
 function Rotas() {
   return (
