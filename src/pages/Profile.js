@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import Header from '../components/Header';
+import MenuInferior from '../components/MenuInferior';
 
 function Profile() {
   const history = useHistory();
@@ -13,8 +15,9 @@ function Profile() {
   console.log(user);
   return (
     <div className="main-perfil">
+      <Header />
       <h1 data-testid="page-title">Profile</h1>
-      <p data-testid="profile-email">{user.email}</p>
+      {user && <p data-testid="profile-email">{user.email}</p>}
       <Link to="/done-recipes">
         <button
           type="button"
@@ -43,6 +46,7 @@ function Profile() {
         Logout
 
       </button>
+      <MenuInferior />
     </div>
   );
 }

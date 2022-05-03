@@ -10,6 +10,8 @@ import FavoritesRecipes from '../pages/FavoritesRecipes';
 import ScreenExplore from '../pages/ScreenExplore';
 import ExploreFoods from '../pages/ExploreFoods';
 import ExploreDrinks from '../pages/ExploreDrinks';
+import DrinksIngredients from '../pages/DrinksIngredients';
+import RecipesNationality from '../pages/RecipesNationality';
 import FoodDetails from '../pages/FoodDetails';
 import DrinkDetails from '../pages/DrinkDetails';
 import RecipeInProgress from '../pages/RecipeInProgress';
@@ -31,6 +33,9 @@ function Rotas() {
       <Route exact path="/explore" component={ ScreenExplore } />
       <Route exact path="/explore/foods" component={ ExploreFoods } />
       <Route exact path="/explore/drinks" component={ ExploreDrinks } />
+      <Route exact path="/explore/foods/ingredients" component={ FoodsIngredients } />
+      <Route exact path="/explore/drinks/ingredients" component={ DrinksIngredients } />
+      <Route exact path="/explore/foods/nationalities" component={ RecipesNationality } />
     </Switch>
   );
 }

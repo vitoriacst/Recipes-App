@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Card from '../components/Card';
 import Header from '../components/Header';
 import AppContext from '../context/AppContext';
+import MenuInferior from '../components/MenuInferior';
 
 export default function Drinks() {
   const { recipes, setRecipes, setApi, setRecipeType } = useContext(AppContext);
@@ -103,6 +104,7 @@ export default function Drinks() {
         </button>
       }
       {cards}
+      <MenuInferior />
     </div>
   );
 }
