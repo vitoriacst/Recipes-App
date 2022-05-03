@@ -120,26 +120,23 @@ function DrinkDetails() {
             {ingredient}
           </p>))}
       <p data-testid="instructions">{strInstructions}</p>
-      <button
+      <input
         className="share-btn"
-        type="button"
+        type="image"
         data-testid="share-btn"
         onClick={ copyToClipBoard }
-      >
-        <img src={ shareIcon } alt="share Icon" />
-      </button>
+        src={ shareIcon }
+        alt="share icon"
+      />
       {linkCopied && <span>Link copied!</span>}
-      <button
+      <input
         className="favorite-btn"
-        type="button"
+        type="image"
         onClick={ handleFavorite }
-      >
-        <img
-          data-testid="favorite-btn"
-          src={ recipeFavorite ? blackHeartIcon : whiteHeartIcon }
-          alt="share Icon"
-        />
-      </button>
+        data-testid="favorite-btn"
+        src={ recipeFavorite ? blackHeartIcon : whiteHeartIcon }
+        alt="favorite icon"
+      />
       <Carousel type="strMeal" />
       {!recipeDone && (
         <button

@@ -5,10 +5,14 @@ import AppContext from '../context/AppContext';
 import MenuInferior from '../components/MenuInferior';
 
 export default function Drinks() {
-  const { recipes, setRecipes, setApi, setRecipeType } = useContext(AppContext);
+  const { recipes,
+    setRecipes,
+    setApi,
+    setRecipeType,
+    recipesFiltered,
+    setRecipesFiltered } = useContext(AppContext);
   const [cards, setCards] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [recipesFiltered, setRecipesFiltered] = useState(recipes);
   const [selected, setSelected] = useState('All');
 
   async function requisicao() {
