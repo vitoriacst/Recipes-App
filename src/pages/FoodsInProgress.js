@@ -1,20 +1,27 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import AppContext from '../context/AppContext';
 import shareIcon from '../images/shareIcon.svg';
 import {
   addFavoriteRecipe,
+  getData,
   removeFavorite,
-  // recipesInProgress,
-  // thisRecipeIsDone,
-  // thisRecipeIsFavorite
+  saveDoneRecipes,
+  thisRecipeIsFavorite,
 } from '../helpers/recipeState';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function RecipeInProgress() {
-  const { setRecipeDetails, recipeDetails } = useContext(AppContext);
+  const history = useHistory();
+  const { setRecipeDetails,
+    recipeDetails,
+    markIngredient,
+    createProgressStorage,
+    markedIngredients } = useContext(AppContext);
   const [ingredients, setIngredients] = useState([]);
+  const [allDone, setAllDone] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
   const [recipeFavorite, setRecipeFavorite] = useState(false);
 
@@ -23,6 +30,7 @@ function RecipeInProgress() {
     strMealThumb,
     strCategory,
     strInstructions,
+    strArea,
   } = recipeDetails;
 
   const match = useRouteMatch();
@@ -42,20 +50,36 @@ function RecipeInProgress() {
     }
   }
 
-  useEffect(() => {
-    getRecipe();
-  }, []);
-
   function copyToClipBoard() {
-    const url = `http://localhost:3000${match.url}`;
-    navigator.clipboard.writeText(url);
+    const url = match.url.split('/in-progress')[0];
+    navigator.clipboard.writeText(`http://localhost:3000${url}`);
     setLinkCopied(true);
+  }
+
+  function allDoneValidation() {
+    setAllDone(markedIngredients.length === ingredients.length && ingredients.length > 0);
   }
 
   function handleFavorite() {
     setRecipeFavorite(!recipeFavorite);
     return recipeFavorite
       ? removeFavorite(values) : addFavoriteRecipe(recipeDetails, 'food');
+  }
+
+  function saveAndRedirect() {
+    const objeto = {
+      id: values,
+      type: 'comida',
+      nationality: strArea,
+      category: strCategory,
+      alcoholicOrNot: '',
+      name: strMeal,
+      image: strMealThumb,
+      doneDate: getData(),
+      tags: '',
+    };
+    saveDoneRecipes(objeto);
+    history.push('/done-recipes');
   }
 
   function organizeIngredients() {
@@ -70,9 +94,22 @@ function RecipeInProgress() {
     }
     setIngredients(ingredientsArray);
   }
+
+  useEffect(() => {
+    createProgressStorage(values, 'meals');
+    setRecipeFavorite(thisRecipeIsFavorite(values));
+    allDoneValidation();
+    getRecipe();
+  }, []);
+
   useEffect(() => {
     organizeIngredients();
-  }, [recipeDetails]);
+    allDoneValidation();
+  }, [recipeDetails, markedIngredients]);
+
+  useEffect(() => {
+    allDoneValidation();
+  }, [ingredients]);
 
   console.log(values);
   return (
@@ -88,7 +125,6 @@ function RecipeInProgress() {
         alt="share icon"
       />
       {linkCopied && <span>Link copied!</span>}
-
       <input
         className="favorite-btn"
         type="image"
@@ -106,13 +142,27 @@ function RecipeInProgress() {
             data-testid={ `${index}-ingredient-step` }
           >
             <label htmlFor={ index }>
-
-              <input type="checkbox" id={ index } />
-              {ingredient}
+              <input
+                type="checkbox"
+                id={ index }
+                onChange={ () => markIngredient(ingredient, values, 'meals') }
+                checked={ markedIngredients.includes(ingredient) }
+              />
+              <p
+                className={ markedIngredients.includes(ingredient) ? 'mark' : 'no-mark' }
+              >
+                {ingredient}
+              </p>
             </label>
           </div>))}
       <p data-testid="instructions">{strInstructions}</p>
-      <input type="button" data-testid="finish-recipe-btn" value="Done" />
+      <input
+        type="button"
+        data-testid="finish-recipe-btn"
+        value="Done"
+        disabled={ !allDone }
+        onClick={ saveAndRedirect }
+      />
     </div>
   );
 }

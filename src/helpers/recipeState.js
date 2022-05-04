@@ -19,8 +19,7 @@ export function recipesInProgress(idRecipe, type) {
 export function thisRecipeIsFavorite(idRecipe) {
   const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
   if (favoriteRecipes) {
-    const idfavoriteRecipes = favoriteRecipes[0].id;
-    return idfavoriteRecipes.includes(idRecipe);
+    return favoriteRecipes.some((recipe) => recipe.id === idRecipe);
   }
 }
 
@@ -46,8 +45,26 @@ export function addFavoriteRecipe(recipeDetails, type) {
 
 export function removeFavorite(idRecipe) {
   const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  const filter = favoriteRecipes.filter((recipe) => recipe.id !== idRecipe);
-  const newFavorites = JSON.stringify(filter);
-  console.log(newFavorites);
-  localStorage.setItem('favoriteRecipes', newFavorites);
+  const newFavorites = favoriteRecipes.filter((recipe) => recipe.id !== idRecipe);
+  return newFavorites.length > 0
+    ? localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites))
+    : localStorage.removeItem('favoriteRecipes');
+}
+
+export function saveDoneRecipes(object) {
+  const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+  if (doneRecipes) {
+    console.log('olá');
+    localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, object]));
+  } else {
+    localStorage.setItem('doneRecipes', JSON.stringify([object]));
+  }
+}
+
+export function getData() {
+  const data = new Date();
+  const dia = String(data.getDate()).padStart(2, '0');
+  const mes = String(data.getMonth() + 1).padStart(2, '0');
+  const ano = data.getFullYear();
+  return `${dia}/${mes}/${ano}`;
 }
