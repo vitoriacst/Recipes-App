@@ -26,6 +26,8 @@ function AppProvider(props) {
   const [searchBar, setSearchBar] = useState(false);
   const [recipesFiltered, setRecipesFiltered] = useState(recipes);
   const [markedIngredients, setMarkedIngredients] = useState([]);
+  const [nationalities, setNationalities] = useState([]);
+
 
   function validate() {
     const { email, password } = loginData;
@@ -104,6 +106,8 @@ function AppProvider(props) {
     createProgressStorage,
     setMarkedIngredients,
     markedIngredients,
+    nationalities,
+    setNationalities,
   };
 
   return (
