@@ -17,6 +17,7 @@ import FoodsInProgress from '../pages/FoodsInProgress';
 import DrinksInProgress from '../pages/DrinksInProgress';
 import RecipesNationality from '../pages/RecipesNationality';
 import ScreenExplore from '../pages/ScreenExplore';
+import NotFound from '../components/NotFound';
 
 function Rotas() {
   return (
@@ -38,6 +39,7 @@ function Rotas() {
       <Route exact path="/explore/foods/ingredients" component={ FoodsIngredients } />
       <Route exact path="/explore/drinks/ingredients" component={ DrinksIngredients } />
       <Route exact path="/explore/foods/nationalities" component={ RecipesNationality } />
+      <Route exact path="/explore/drinks/nationalities" component={ NotFound } />
     </Switch>
   );
 }
