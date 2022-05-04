@@ -28,7 +28,6 @@ function AppProvider(props) {
   const [markedIngredients, setMarkedIngredients] = useState([]);
   const [nationalities, setNationalities] = useState([]);
 
-
   function validate() {
     const { email, password } = loginData;
     const min = 6;
