@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Card from '../components/Card';
 import Header from '../components/Header';
-import AppContext from '../context/AppContext';
 import MenuInferior from '../components/MenuInferior';
+import AppContext from '../context/AppContext';
 
 export default function Drinks() {
   const { recipes,
@@ -40,7 +40,9 @@ export default function Drinks() {
       <Card
         key={ recipe.strDrink }
         thumb={ recipe.strDrinkThumb }
-        index={ index }
+        divTestid={ `${index}-recipe-card` }
+        hTestid={ `${index}-card-name` }
+        imgTestid={ `${index}-card-img` }
         name={ recipe.strDrink }
         id={ recipe.idDrink }
         recipe="drinks"
@@ -74,7 +76,10 @@ export default function Drinks() {
     setApi('thecocktaildb');
     setRecipeType('drinks');
     fetchCategories();
-    requisicao();
+    console.log(recipesFiltered);
+    if (!recipesFiltered.length) {
+      requisicao();
+    }
   }, []);
 
   useEffect(() => {

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Card from '../components/Card';
 import Header from '../components/Header';
-import AppContext from '../context/AppContext';
 import MenuInferior from '../components/MenuInferior';
+import AppContext from '../context/AppContext';
 
 export default function Foods() {
   const { recipes,
@@ -80,8 +80,6 @@ export default function Foods() {
 
   useEffect(() => {
     renderCard(recipesFiltered);
-    console.log(recipesFiltered);
-    console.log(recipes);
   }, [recipesFiltered, recipes]);
 
   return (
