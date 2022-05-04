@@ -6,7 +6,7 @@ import AppContext from '../context/AppContext';
 
 function FoodsIngredients() {
   const [ingredients, setIngredients] = useState([]);
-  const { recipes, setRecipes } = useContext(AppContext);
+  const { setRecipesFiltered, setIngredient } = useContext(AppContext);
 
   const fetchIngredients = async () => {
     const endPoint = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
@@ -19,14 +19,13 @@ function FoodsIngredients() {
   };
 
   const filterByIngredient = async (ingredient) => {
-    console.log(ingredient);
     const endPoint = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
     const response = await fetch(endPoint);
     const data = await response.json();
     const number = 12;
     // coloquei o underline antes do parametro drink para nao deixar parametro 'solto';
-    setRecipes(data.meals.filter((_meal, index) => index < number));
-    console.log(recipes);
+    setRecipesFiltered(data.meals.filter((_meal, index) => index < number));
+    setIngredient(true);
   };
 
   useEffect(() => {
@@ -40,7 +39,13 @@ function FoodsIngredients() {
         Explore Ingredients
         {
           ingredients.map((ingredient, index) => (
-            <div key={ index }>
+            <div
+              key={ index }
+              onClick={ () => filterByIngredient(ingredient.strIngredient) }
+              onKeyDown={ () => filterByIngredient(ingredient.strIngredient) }
+              role="button"
+              tabIndex={ 0 }
+            >
               <Card
                 divTestid={ `${index}-ingredient-card` }
                 hTestid={ `${index}-card-name` }
@@ -48,7 +53,6 @@ function FoodsIngredients() {
                 thumb={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
                 recipe="foods"
                 id=""
-                onClick={ () => filterByIngredient(ingredient.strIngredient1) }
               />
               <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient}</p>
             </div>

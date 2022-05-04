@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Card = ({ thumb, divTestid, hTestid, imgTestid, name, id, recipe }) => (
-  <Link to={ `/${recipe}/${id}` }>
+  <Link to={ `/${recipe}${id}` }>
     <div data-testid={ divTestid }>
       <h1 data-testid={ hTestid }>{ name }</h1>
       <img src={ thumb } data-testid={ imgTestid } alt={ name } />

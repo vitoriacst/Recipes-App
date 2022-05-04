@@ -6,7 +6,8 @@ import AppContext from '../context/AppContext';
 
 function DrinksIngredients() {
   const [ingredients, setIngredients] = useState([]);
-  const { recipesFiltered, setRecipesFiltered } = useContext(AppContext);
+  const { setRecipesFiltered,
+    setIngredient } = useContext(AppContext);
 
   const fetchIngredients = async () => {
     const endPoint = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
@@ -19,14 +20,13 @@ function DrinksIngredients() {
   };
 
   const filterByIngredient = async (ingredient) => {
-    console.log(ingredient);
     const endPoint = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`;
     const response = await fetch(endPoint);
     const data = await response.json();
     const number = 12;
     // coloquei o underline antes do parametro drink para nao deixar parametro 'solto';
     setRecipesFiltered(data.drinks.filter((_drink, index) => index < number));
-    console.log(recipesFiltered);
+    setIngredient(true);
   };
 
   useEffect(() => {
@@ -40,7 +40,13 @@ function DrinksIngredients() {
         Explore Ingredients
         {
           ingredients.map((ingredient, index) => (
-            <div key={ index }>
+            <div
+              key={ index }
+              onClick={ () => filterByIngredient(ingredient.strIngredient1) }
+              onKeyDown={ () => filterByIngredient(ingredient.strIngredient1) }
+              role="button"
+              tabIndex={ 0 }
+            >
               <Card
                 divTestid={ `${index}-ingredient-card` }
                 hTestid={ `${index}-card-name` }
@@ -48,7 +54,6 @@ function DrinksIngredients() {
                 thumb={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png` }
                 recipe="drinks"
                 id=""
-                onClick={ () => filterByIngredient(ingredient.strIngredient1) }
               />
               <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient1}</p>
             </div>

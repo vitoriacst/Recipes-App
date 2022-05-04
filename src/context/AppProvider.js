@@ -25,6 +25,7 @@ function AppProvider(props) {
   const [buttonState, setButtonState] = useState(INITIAL_BTN);
   const [searchBar, setSearchBar] = useState(false);
   const [recipesFiltered, setRecipesFiltered] = useState(recipes);
+  const [ingredient, setIngredient] = useState(false);
 
   function validate() {
     const { email, password } = loginData;
@@ -68,6 +69,8 @@ function AppProvider(props) {
     setSugestPosition,
     recipesFiltered,
     setRecipesFiltered,
+    ingredient,
+    setIngredient,
   };
 
   return (

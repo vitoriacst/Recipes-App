@@ -10,7 +10,10 @@ export default function Drinks() {
     setApi,
     setRecipeType,
     recipesFiltered,
-    setRecipesFiltered } = useContext(AppContext);
+    setRecipesFiltered,
+    ingredient,
+  } = useContext(AppContext);
+
   const [cards, setCards] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selected, setSelected] = useState('All');
@@ -44,7 +47,7 @@ export default function Drinks() {
         hTestid={ `${index}-card-name` }
         imgTestid={ `${index}-card-img` }
         name={ recipe.strDrink }
-        id={ recipe.idDrink }
+        id={ `/${recipe.idDrink}` }
         recipe="drinks"
       />
     ));
@@ -76,8 +79,7 @@ export default function Drinks() {
     setApi('thecocktaildb');
     setRecipeType('drinks');
     fetchCategories();
-    console.log(recipesFiltered);
-    if (!recipesFiltered.length) {
+    if (!ingredient) {
       requisicao();
     }
   }, []);

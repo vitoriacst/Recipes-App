@@ -10,7 +10,9 @@ export default function Foods() {
     setApi,
     setRecipeType,
     recipesFiltered,
-    setRecipesFiltered } = useContext(AppContext);
+    setRecipesFiltered,
+    ingredient,
+  } = useContext(AppContext);
 
   const [cards, setCards] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -41,9 +43,11 @@ export default function Foods() {
       <Card
         key={ recipe.strMeal }
         thumb={ recipe.strMealThumb }
-        index={ index }
+        divTestid={ `${index}-recipe-card` }
+        hTestid={ `${index}-card-name` }
+        imgTestid={ `${index}-card-img` }
         name={ recipe.strMeal }
-        id={ recipe.idMeal }
+        id={ `/${recipe.idDrink}` }
         recipe="foods"
       />
     ));
@@ -75,7 +79,9 @@ export default function Foods() {
     setApi('themealdb');
     setRecipeType('meals');
     fetchCategories();
-    requisicao();
+    if (!ingredient) {
+      requisicao();
+    }
   }, []);
 
   useEffect(() => {
