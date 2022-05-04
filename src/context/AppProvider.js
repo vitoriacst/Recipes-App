@@ -25,6 +25,7 @@ function AppProvider(props) {
   const [buttonState, setButtonState] = useState(INITIAL_BTN);
   const [searchBar, setSearchBar] = useState(false);
   const [recipesFiltered, setRecipesFiltered] = useState(recipes);
+  const [markedIngredients, setMarkedIngredients] = useState([]);
 
   function validate() {
     const { email, password } = loginData;
@@ -40,6 +41,37 @@ function AppProvider(props) {
 
   function handleChange({ target }) {
     setLoginData({ ...loginData, [target.name]: target.value });
+  }
+
+  function markIngredient(ingredient, values, type) {
+    const currentStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (!markedIngredients.includes(ingredient)) {
+      const newMark = [...markedIngredients, ingredient];
+      setMarkedIngredients(newMark);
+      currentStorage[type][values] = newMark;
+    }
+    localStorage.setItem('inProgressRecipes', JSON.stringify(currentStorage));
+  }
+
+  function createProgressStorage(values, type) {
+    const currentStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const obj = {
+      cocktails: {
+      },
+      meals: {
+      },
+    };
+
+    obj[type] = { [values]: [] };
+
+    if (!currentStorage) {
+      localStorage.setItem('inProgressRecipes', JSON.stringify(obj));
+    } else if (!currentStorage[type][values]) {
+      currentStorage[type][values] = [];
+      localStorage.setItem('inProgressRecipes', JSON.stringify(currentStorage));
+    } else {
+      setMarkedIngredients(currentStorage[type][values]);
+    }
   }
 
   const providerValue = {
@@ -68,6 +100,10 @@ function AppProvider(props) {
     setSugestPosition,
     recipesFiltered,
     setRecipesFiltered,
+    markIngredient,
+    createProgressStorage,
+    setMarkedIngredients,
+    markedIngredients,
   };
 
   return (
