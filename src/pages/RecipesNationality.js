@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import MenuInferior from '../components/MenuInferior';
-import Header from '../components/Header';
-import AppContext from '../context/AppContext';
 import Card from '../components/Card';
+import Header from '../components/Header';
+import MenuInferior from '../components/MenuInferior';
+import AppContext from '../context/AppContext';
 
 function RecipesNationality() {
   const { nationalities,
@@ -40,10 +40,13 @@ function RecipesNationality() {
     const newCards = array.map((recipe, index) => (
       <Card
         key={ recipe.strMeal }
+        divTestid={ `${index}-recipe-card` }
+        imgTestid={ `${index}-card-img` }
+        hTestid={ `${index}-card-name` }
         thumb={ recipe.strMealThumb }
         index={ index }
         name={ recipe.strMeal }
-        id={ recipe.idMeal }
+        id={ `/${recipe.idMeal}` }
         recipe="foods"
       />
     ));

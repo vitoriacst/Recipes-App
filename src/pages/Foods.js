@@ -47,7 +47,7 @@ export default function Foods() {
         hTestid={ `${index}-card-name` }
         imgTestid={ `${index}-card-img` }
         name={ recipe.strMeal }
-        id={ `/${recipe.idDrink}` }
+        id={ `/${recipe.idMeal}` }
         recipe="foods"
       />
     ));
