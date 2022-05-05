@@ -5,10 +5,10 @@ import AppContext from '../context/AppContext';
 import shareIcon from '../images/shareIcon.svg';
 import {
   addFavoriteRecipe,
-  getData,
   removeFavorite,
   saveDoneRecipes,
   thisRecipeIsFavorite,
+  objectFood,
 } from '../helpers/recipeState';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -30,7 +30,6 @@ function RecipeInProgress() {
     strMealThumb,
     strCategory,
     strInstructions,
-    strArea,
   } = recipeDetails;
 
   const match = useRouteMatch();
@@ -67,17 +66,7 @@ function RecipeInProgress() {
   }
 
   function saveAndRedirect() {
-    const objeto = {
-      id: values,
-      type: 'comida',
-      nationality: strArea,
-      category: strCategory,
-      alcoholicOrNot: '',
-      name: strMeal,
-      image: strMealThumb,
-      doneDate: getData(),
-      tags: '',
-    };
+    const objeto = objectFood(recipeDetails, values);
     saveDoneRecipes(objeto);
     history.push('/done-recipes');
   }
