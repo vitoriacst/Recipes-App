@@ -68,3 +68,47 @@ export function getData() {
   const ano = data.getFullYear();
   return `${dia}/${mes}/${ano}`;
 }
+
+export function objectDrink(recipeDetails, values) {
+  const {
+    strDrink,
+    strDrinkThumb,
+    strCategory,
+    strAlcoholic,
+    strTags,
+  } = recipeDetails;
+
+  return {
+    id: values,
+    type: 'drink',
+    nationality: '',
+    category: strCategory,
+    alcoholicOrNot: strAlcoholic,
+    name: strDrink,
+    image: strDrinkThumb,
+    doneDate: getData(),
+    tags: strTags ? strTags.split(',') : [],
+  };
+}
+
+export function objectFood(recipeDetails, values) {
+  const {
+    strMeal,
+    strMealThumb,
+    strCategory,
+    strArea,
+    strTags,
+  } = recipeDetails;
+
+  return {
+    id: values,
+    type: 'food',
+    nationality: strArea,
+    category: strCategory,
+    alcoholicOrNot: '',
+    name: strMeal,
+    image: strMealThumb,
+    doneDate: getData(),
+    tags: strTags ? strTags.split(',') : [],
+  };
+}
