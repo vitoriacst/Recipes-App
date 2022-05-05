@@ -25,6 +25,7 @@ function AppProvider(props) {
   const [buttonState, setButtonState] = useState(INITIAL_BTN);
   const [searchBar, setSearchBar] = useState(false);
   const [recipesFiltered, setRecipesFiltered] = useState(recipes);
+  const [ingredient, setIngredient] = useState(false);
   const [markedIngredients, setMarkedIngredients] = useState([]);
   const [nationalities, setNationalities] = useState([]);
 
@@ -44,10 +45,10 @@ function AppProvider(props) {
     setLoginData({ ...loginData, [target.name]: target.value });
   }
 
-  function markIngredient(ingredient, values, type) {
+  function markIngredient(ingrdient, values, type) {
     const currentStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (!markedIngredients.includes(ingredient)) {
-      const newMark = [...markedIngredients, ingredient];
+    if (!markedIngredients.includes(ingrdient)) {
+      const newMark = [...markedIngredients, ingrdient];
       setMarkedIngredients(newMark);
       currentStorage[type][values] = newMark;
     }
@@ -101,6 +102,8 @@ function AppProvider(props) {
     setSugestPosition,
     recipesFiltered,
     setRecipesFiltered,
+    ingredient,
+    setIngredient,
     markIngredient,
     createProgressStorage,
     setMarkedIngredients,

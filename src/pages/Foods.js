@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Card from '../components/Card';
 import Header from '../components/Header';
-import AppContext from '../context/AppContext';
 import MenuInferior from '../components/MenuInferior';
+import AppContext from '../context/AppContext';
 
 export default function Foods() {
   const { recipes,
@@ -10,7 +10,9 @@ export default function Foods() {
     setApi,
     setRecipeType,
     recipesFiltered,
-    setRecipesFiltered } = useContext(AppContext);
+    setRecipesFiltered,
+    ingredient,
+  } = useContext(AppContext);
 
   const [cards, setCards] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -41,9 +43,11 @@ export default function Foods() {
       <Card
         key={ recipe.strMeal }
         thumb={ recipe.strMealThumb }
-        index={ index }
+        divTestid={ `${index}-recipe-card` }
+        hTestid={ `${index}-card-name` }
+        imgTestid={ `${index}-card-img` }
         name={ recipe.strMeal }
-        id={ recipe.idMeal }
+        id={ `/${recipe.idDrink}` }
         recipe="foods"
       />
     ));
@@ -75,13 +79,14 @@ export default function Foods() {
     setApi('themealdb');
     setRecipeType('meals');
     fetchCategories();
-    requisicao();
+    // condicional para nao re-renderizar caso for redirecionado from ingredients
+    if (!ingredient) {
+      requisicao();
+    }
   }, []);
 
   useEffect(() => {
     renderCard(recipesFiltered);
-    console.log(recipesFiltered);
-    console.log(recipes);
   }, [recipesFiltered, recipes]);
 
   return (

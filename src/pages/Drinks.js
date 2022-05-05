@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Card from '../components/Card';
 import Header from '../components/Header';
-import AppContext from '../context/AppContext';
 import MenuInferior from '../components/MenuInferior';
+import AppContext from '../context/AppContext';
 
 export default function Drinks() {
   const { recipes,
@@ -10,7 +10,10 @@ export default function Drinks() {
     setApi,
     setRecipeType,
     recipesFiltered,
-    setRecipesFiltered } = useContext(AppContext);
+    setRecipesFiltered,
+    ingredient,
+  } = useContext(AppContext);
+
   const [cards, setCards] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selected, setSelected] = useState('All');
@@ -40,9 +43,11 @@ export default function Drinks() {
       <Card
         key={ recipe.strDrink }
         thumb={ recipe.strDrinkThumb }
-        index={ index }
+        divTestid={ `${index}-recipe-card` }
+        hTestid={ `${index}-card-name` }
+        imgTestid={ `${index}-card-img` }
         name={ recipe.strDrink }
-        id={ recipe.idDrink }
+        id={ `/${recipe.idDrink}` }
         recipe="drinks"
       />
     ));
@@ -74,7 +79,10 @@ export default function Drinks() {
     setApi('thecocktaildb');
     setRecipeType('drinks');
     fetchCategories();
-    requisicao();
+    // condicional para nao re-renderizar caso for redirecionado from ingredients
+    if (!ingredient) {
+      requisicao();
+    }
   }, []);
 
   useEffect(() => {

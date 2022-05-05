@@ -1,5 +1,5 @@
-import { useHistory } from 'react-router-dom';
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 
 function BarraDeBusca() {
@@ -56,8 +56,8 @@ function BarraDeBusca() {
       history.replace(`/${UrlKey}/${results[recipeType][0][idKey]}`);
     } else if (results[recipeType].length > 1) {
       const number = 12;
-      setRecipesFiltered(results[recipeType].filter((drink, index) => index < number));
-      setRecipes(results[recipeType].filter((drink, index) => index < number));
+      setRecipesFiltered(results[recipeType].filter((_drink, index) => index < number));
+      setRecipes(results[recipeType].filter((_drink, index) => index < number));
     }
   }
 
