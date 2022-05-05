@@ -45,10 +45,10 @@ function AppProvider(props) {
     setLoginData({ ...loginData, [target.name]: target.value });
   }
 
-  function markIngredient(ingredient, values, type) {
+  function markIngredient(ingrdient, values, type) {
     const currentStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (!markedIngredients.includes(ingredient)) {
-      const newMark = [...markedIngredients, ingredient];
+    if (!markedIngredients.includes(ingrdient)) {
+      const newMark = [...markedIngredients, ingrdient];
       setMarkedIngredients(newMark);
       currentStorage[type][values] = newMark;
     }
