@@ -9,6 +9,8 @@ function FoodsIngredients() {
   const { setRecipesFiltered, setIngredient } = useContext(AppContext);
 
   const fetchIngredients = async () => {
+    // o context setIngredient muda para true desde o inicio para, a traves de um condicional, nao re-renderizar em /foods;
+    setIngredient(true);
     const endPoint = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
     const response = await fetch(endPoint);
     const data = await response.json();
@@ -25,7 +27,6 @@ function FoodsIngredients() {
     const number = 12;
     // coloquei o underline antes do parametro drink para nao deixar parametro 'solto';
     setRecipesFiltered(data.meals.filter((_meal, index) => index < number));
-    setIngredient(true);
   };
 
   useEffect(() => {

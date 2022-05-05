@@ -6,10 +6,11 @@ import AppContext from '../context/AppContext';
 
 function DrinksIngredients() {
   const [ingredients, setIngredients] = useState([]);
-  const { setRecipesFiltered,
-    setIngredient } = useContext(AppContext);
+  const { setRecipesFiltered, setIngredient } = useContext(AppContext);
 
   const fetchIngredients = async () => {
+    // o context setIngredient muda para true desde o inicio para, a traves de um condicional, nao re-renderizar em /drinks;
+    setIngredient(true);
     const endPoint = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
     const response = await fetch(endPoint);
     const data = await response.json();
@@ -26,7 +27,6 @@ function DrinksIngredients() {
     const number = 12;
     // coloquei o underline antes do parametro drink para nao deixar parametro 'solto';
     setRecipesFiltered(data.drinks.filter((_drink, index) => index < number));
-    setIngredient(true);
   };
 
   useEffect(() => {

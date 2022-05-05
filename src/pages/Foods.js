@@ -79,6 +79,7 @@ export default function Foods() {
     setApi('themealdb');
     setRecipeType('meals');
     fetchCategories();
+    // condicional para nao re-renderizar caso for redirecionado from ingredients
     if (!ingredient) {
       requisicao();
     }

@@ -79,6 +79,7 @@ export default function Drinks() {
     setApi('thecocktaildb');
     setRecipeType('drinks');
     fetchCategories();
+    // condicional para nao re-renderizar caso for redirecionado from ingredients
     if (!ingredient) {
       requisicao();
     }
