@@ -28,6 +28,7 @@ function AppProvider(props) {
   const [ingredient, setIngredient] = useState(false);
   const [markedIngredients, setMarkedIngredients] = useState([]);
   const [nationalities, setNationalities] = useState([]);
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   function validate() {
     const { email, password } = loginData;
@@ -110,6 +111,8 @@ function AppProvider(props) {
     markedIngredients,
     nationalities,
     setNationalities,
+    favoriteRecipes,
+    setFavoriteRecipes,
   };
 
   return (

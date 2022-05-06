@@ -48,7 +48,7 @@ export function removeFavorite(idRecipe) {
   const newFavorites = favoriteRecipes.filter((recipe) => recipe.id !== idRecipe);
   return newFavorites.length > 0
     ? localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites))
-    : localStorage.removeItem('favoriteRecipes');
+    : localStorage.setItem('favoriteRecipes', JSON.stringify([]));
 }
 
 export function saveDoneRecipes(object) {
