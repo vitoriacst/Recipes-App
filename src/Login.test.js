@@ -5,11 +5,16 @@ import App from './App';
 
 describe('Teste o componente <Login.js>',
   () => {
+    const eInput = 'email-input';
+    const passInput = 'password-input';
+    const subBtn = 'login-submit-btn';
+    const mail = 'test@test.com';
+
     it('Verifica os data-testids dos elementos', () => {
       render(<App />);
-      const emailInput = screen.getByTestId('email-input');
-      const passwordInput = screen.getByTestId('password-input');
-      const submitBtn = screen.getByTestId('login-submit-btn');
+      const emailInput = screen.getByTestId(eInput);
+      const passwordInput = screen.getByTestId(passInput);
+      const submitBtn = screen.getByTestId(subBtn);
 
       expect(emailInput).toBeInTheDocument();
       expect(passwordInput).toBeInTheDocument();
@@ -17,8 +22,8 @@ describe('Teste o componente <Login.js>',
     });
     it('Verifica se e possivel escrever o email', () => {
       render(<App />);
-      const mockEmail = 'test@test.com';
-      const emailInput = screen.getByTestId('email-input');
+      const mockEmail = mail;
+      const emailInput = screen.getByTestId(eInput);
       userEvent.type(emailInput, mockEmail);
 
       expect(emailInput).toHaveProperty('value', mockEmail);
@@ -26,7 +31,7 @@ describe('Teste o componente <Login.js>',
     it('Verifica se e possivel escrever a senha', () => {
       render(<App />);
       const password = '1234567';
-      const passwordInput = screen.getByTestId('password-input');
+      const passwordInput = screen.getByTestId(passInput);
       userEvent.type(passwordInput, password);
 
       expect(passwordInput).toHaveProperty('value', password);
@@ -34,11 +39,11 @@ describe('Teste o componente <Login.js>',
     it('Verifica os data-testids dos elementos', () => {
       render(<App />);
 
-      const emailInput = screen.getByTestId('email-input');
-      const passwordInput = screen.getByTestId('password-input');
-      const submitBtn = screen.getByTestId('login-submit-btn');
+      const emailInput = screen.getByTestId(eInput);
+      const passwordInput = screen.getByTestId(passInput);
+      const submitBtn = screen.getByTestId(subBtn);
 
-      const mockEmail = 'test@test.com';
+      const mockEmail = mail;
       const wrongEmail1 = 'test@.com';
       const wrongEmail2 = 'test@';
       const wrongEmail3 = 'test';
@@ -66,5 +71,29 @@ describe('Teste o componente <Login.js>',
       userEvent.type(passwordInput, password);
 
       expect(submitBtn).toHaveProperty('disabled', false);
+    });
+    it('Verifica se os dois tokens são gravados', () => {
+      render(<App />);
+
+      const emailInput = screen.getByTestId(eInput);
+      const passwordInput = screen.getByTestId(passInput);
+      const submitBtn = screen.getByTestId(subBtn);
+      const mockEmail = mail;
+      const password = '1234567';
+
+      userEvent.type(emailInput, mockEmail);
+      userEvent.type(passwordInput, password);
+      userEvent.click(submitBtn);
+
+      const token1 = localStorage.getItem('mealsToken');
+      const token2 = localStorage.getItem('cocktailsToken');
+      const userToken = JSON.parse(localStorage.getItem('user'));
+
+      expect(token1).toBe('1');
+      expect(token2).toBe('1');
+      expect(userToken.email).toBe(mockEmail);
+
+      const foodsPageTitle = screen.getByTestId('All-category-filter');
+      expect(foodsPageTitle).toBeInTheDocument();
     });
   });
