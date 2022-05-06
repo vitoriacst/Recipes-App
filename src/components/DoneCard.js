@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import {
+  addFavoriteRecipe,
+  removeFavorite,
+  thisRecipeIsFavorite } from '../helpers/recipeState';
 
 function DoneCard(props) {
   const [linkCopied, setLinkCopied] = useState(false);
+  const [recipeFavorite, setRecipeFavorite] = useState(false);
 
   const { recipeDone, index, link } = props;
   const {
@@ -20,11 +27,29 @@ function DoneCard(props) {
   } = recipeDone;
 
   function copyToClipBoard() {
-    const foodOrDrink = type === 'bebida' ? 'drinks' : 'foods';
-    const url = `http://localhost:3000/${foodOrDrink}/${id}`;
+    const url = `http://localhost:3000/${type}s/${id}`;
     navigator.clipboard.writeText(url);
     setLinkCopied(true);
   }
+
+  function handleFavorite() {
+    setRecipeFavorite(!recipeFavorite);
+    const mealOrDrink = type === 'food' ? 'Meal' : 'Drink';
+    const object = {
+      [`id${mealOrDrink}`]: id,
+      strArea: nationality,
+      strCategory: category,
+      strAlcoholic: alcoholicOrNot,
+      [`str${mealOrDrink}`]: name,
+      [`str${mealOrDrink}Thumb`]: image,
+    };
+    return recipeFavorite
+      ? removeFavorite(id) : addFavoriteRecipe(object, type);
+  }
+
+  useEffect(() => {
+    setRecipeFavorite(thisRecipeIsFavorite(id));
+  }, []);
 
   return (
     <div>
@@ -58,11 +83,19 @@ function DoneCard(props) {
         alt={ `${index}share icon` }
       />
       {linkCopied && <span>Link copied!</span>}
-      {tags.map((tag) => (
+      {tags && tags.map((tag) => (
         <p key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>
           {tag}
         </p>
       ))}
+      <input
+        className="favorite-btn"
+        type="image"
+        onClick={ handleFavorite }
+        data-testid={ `${index}-horizontal-favorite-btn` }
+        src={ recipeFavorite ? blackHeartIcon : whiteHeartIcon }
+        alt={ `${index}favorite icon` }
+      />
     </div>
   );
 }
