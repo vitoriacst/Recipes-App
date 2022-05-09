@@ -7,11 +7,11 @@ import ExploreDrinksFoods from '../components/ExploreDrinksFoods';
 function ExploreDrinks() {
   return (
     <div>
+      <Header />
       <h1 data-testid="page-title">Explore Drinks</h1>
       <ExploreDrinksFoods />
-      <MenuInferior />
       <Card />
-      <Header />
+      <MenuInferior />
     </div>
   );
 }

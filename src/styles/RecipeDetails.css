@@ -1,4 +1,54 @@
+.main-details {
+  align-items: center;
+  background-color: rgba(79, 148, 109, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.recipe-photo {
+  width: 390px;
+}
+
+.main-ingredients {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  width: 280px;
+}
+
+.main-instrucions {
+  color: white;
+
+}
+
+
+.buttons {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  width: 300px;
+}
+
+.start-recipe-btn {
+  background-color: white;
+  padding: 10px 6px;
+  width: 140px;
+}
+
+.main-button {
+  display: flex;
+  justify-content: center;
+}
+
 .youtube-video {
-  height: 315px;
-  width: 560px;
+  height: 215px;
+  width: 360px;
+}
+
+.recipe-title {
+  font-family: 'Koulen' , cursive;
+  color: white;
 }

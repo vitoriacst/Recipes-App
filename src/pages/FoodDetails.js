@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
-import '../styles/RecipeDetails.css';
 import Carousel from '../components/Carousel';
+import '../styles/RecipeDetails.css';
 import {
   addFavoriteRecipe,
   removeFavorite,
@@ -95,7 +95,7 @@ function FoodDetails() {
   }, [recipeDetails]);
   console.log(recipeDetails);
   return (
-    <div>
+    <div className="main-details">
       <img
         className="recipe-photo"
         data-testid="recipe-photo"
@@ -116,14 +116,18 @@ function FoodDetails() {
       </h3>
       { ingredients
         .map((ingredient, index) => (
-          <p
-            className="ingredient-name"
-            key={ index }
-            data-testid={ `${index}-ingredient-name-and-measure` }
-          >
-            {ingredient}
-          </p>))}
-      <p data-testid="instructions">{strInstructions}</p>
+          <div key={ index } className="main-ingredients">
+            <p
+              className="ingredient-name"
+              key={ index }
+              data-testid={ `${index}-ingredient-name-and-measure` }
+            >
+              {ingredient}
+            </p>
+          </div>
+        ))}
+
+      <p data-testid="instructions" className="main-instrucions">{strInstructions}</p>
       {youtubeLink && (
         <iframe
           className="youtube-video"
@@ -133,34 +137,40 @@ function FoodDetails() {
           frameBorder="0"
         />
       )}
-      <input
-        className="share-btn"
-        type="image"
-        data-testid="share-btn"
-        onClick={ copyToClipBoard }
-        src={ shareIcon }
-        alt="share icon"
-      />
-      {linkCopied && <span>Link copied!</span>}
-      <input
-        className="favorite-btn"
-        type="image"
-        onClick={ handleFavorite }
-        data-testid="favorite-btn"
-        src={ recipeFavorite ? blackHeartIcon : whiteHeartIcon }
-        alt="favorite icon"
-      />
-      <Carousel type="strDrink" />
-      {!recipeDone && (
-        <button
-          className="start-recipe-btn"
-          type="button"
-          data-testid="start-recipe-btn"
-          onClick={ startRecipe }
-        >
-          {recipeProgress ? 'Continue Recipe' : 'Iniciar receita' }
-        </button>
-      )}
+      <div className="buttons">
+        <input
+          className="share-btn"
+          type="image"
+          data-testid="share-btn"
+          onClick={ copyToClipBoard }
+          src={ shareIcon }
+          alt="share icon"
+        />
+        {linkCopied && <span>Link copied!</span>}
+        <input
+          className="favorite-btn"
+          type="image"
+          onClick={ handleFavorite }
+          data-testid="favorite-btn"
+          src={ recipeFavorite ? blackHeartIcon : whiteHeartIcon }
+          alt="favorite icon"
+        />
+      </div>
+      <div>
+        <Carousel type="strDrink" className="carousel" />
+        {!recipeDone && (
+          <div className="main-button">
+            <button
+              className="start-recipe-btn"
+              type="button"
+              data-testid="start-recipe-btn"
+              onClick={ startRecipe }
+            >
+              {recipeProgress ? 'Continue Recipe' : 'Iniciar receita' }
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

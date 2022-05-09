@@ -1,4 +1,17 @@
 .main-footer {
   bottom: 0;
   position: fixed;
+  width: 100%;
+}
+
+.footer {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  height: 50px;
+  justify-content: space-around;
+}
+
+.footer-icon {
+  background-color: white;
 }

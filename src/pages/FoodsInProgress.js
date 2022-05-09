@@ -102,26 +102,33 @@ function RecipeInProgress() {
 
   console.log(values);
   return (
-    <div>
-      <img data-testid="recipe-photo" src={ strMealThumb } alt="meal Thumb" />
-      <h1 data-testid="recipe-title">{strMeal}</h1>
-      <input
-        className="share-btn"
-        type="image"
-        data-testid="share-btn"
-        onClick={ copyToClipBoard }
-        src={ shareIcon }
-        alt="share icon"
+    <div className="main-in-progress">
+      <img
+        data-testid="recipe-photo"
+        src={ strMealThumb }
+        alt="meal Thumb"
+        className="recipe-photo"
       />
-      {linkCopied && <span>Link copied!</span>}
-      <input
-        className="favorite-btn"
-        type="image"
-        onClick={ handleFavorite }
-        data-testid="favorite-btn"
-        src={ recipeFavorite ? blackHeartIcon : whiteHeartIcon }
-        alt="favorite icon"
-      />
+      <h1 data-testid="recipe-title" className="title">{strMeal}</h1>
+      <div className="buttons-in-progress">
+        <input
+          className="share-btn"
+          type="image"
+          data-testid="share-btn"
+          onClick={ copyToClipBoard }
+          src={ shareIcon }
+          alt="share icon"
+        />
+        {linkCopied && <span>Link copied!</span>}
+        <input
+          className="favorite-btn"
+          type="image"
+          onClick={ handleFavorite }
+          data-testid="favorite-btn"
+          src={ recipeFavorite ? blackHeartIcon : whiteHeartIcon }
+          alt="favorite icon"
+        />
+      </div>
       <p data-testid="recipe-category">{strCategory}</p>
       { ingredients
         .map((ingredient, index) => (
@@ -130,22 +137,27 @@ function RecipeInProgress() {
             key={ index }
             data-testid={ `${index}-ingredient-step` }
           >
-            <label htmlFor={ index }>
-              <input
-                type="checkbox"
-                id={ index }
-                onChange={ () => markIngredient(ingredient, values, 'meals') }
-                checked={ markedIngredients.includes(ingredient) }
-              />
-              <p
-                className={ markedIngredients.includes(ingredient) ? 'mark' : 'no-mark' }
-              >
-                {ingredient}
-              </p>
-            </label>
-          </div>))}
-      <p data-testid="instructions">{strInstructions}</p>
+            <div className="main-ingredients">
+              <label htmlFor={ index }>
+                <input
+                  type="checkbox"
+                  id={ index }
+                  onChange={ () => markIngredient(ingredient, values, 'meals') }
+                  checked={ markedIngredients.includes(ingredient) }
+                />
+                <p
+                  className={ markedIngredients.includes(ingredient)
+                    ? 'mark' : 'no-mark' }
+                >
+                  {ingredient}
+                </p>
+              </label>
+            </div>
+          </div>
+        ))}
+      <p data-testid="instructions" className="about">{strInstructions}</p>
       <input
+        className="buttons-in-progress"
         type="button"
         data-testid="finish-recipe-btn"
         value="Done"

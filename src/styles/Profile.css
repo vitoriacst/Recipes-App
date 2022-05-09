@@ -1,0 +1,37 @@
+.perfil {
+  background-color: rgb(80, 129, 80);
+  height: 100vh;
+  width: 100%;
+}
+
+.main-perfil {
+  align-items: center;
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Rajdhani' , sans-serif;
+  gap: 25px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.button-profile {
+  background-color: white;
+  padding: 10px 6px;
+  width: 140px;
+}
+
+.div-email {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 7px;
+  color: white;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  width: 270px;
+}
+
+.div-email p {
+  margin: 0;
+}

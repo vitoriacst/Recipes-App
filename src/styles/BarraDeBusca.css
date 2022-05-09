@@ -1,0 +1,46 @@
+.searchBar {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.main-checkbox {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.input {
+  align-items: center;
+  display: flex;
+  font-family: 'Rajdhani' , sans-serif;
+  justify-content: center;
+}
+
+.input-text {
+  border: 1px black solid;
+
+}
+
+.search-btn {
+  background-color: rgb(15, 131, 99);
+  border: none;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-family: 'Rajdhani' , sans-serif;
+  font-size: 16px;
+  height: 26px;
+  letter-spacing: 2px;
+  padding: 0 10px;
+  transition: all 0.5s ease;
+  width: 70%;
+}
+
+.search-btn:hover {
+  background-color: rgb(38, 120, 73);
+  color: rgb(0, 0, 0);
+}

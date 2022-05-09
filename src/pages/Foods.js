@@ -3,6 +3,7 @@ import Card from '../components/Card';
 import Header from '../components/Header';
 import MenuInferior from '../components/MenuInferior';
 import AppContext from '../context/AppContext';
+import '../styles/Foods.css';
 
 export default function Foods() {
   const { recipes,
@@ -82,6 +83,8 @@ export default function Foods() {
     // condicional para nao re-renderizar caso for redirecionado from ingredients
     if (!ingredient) {
       requisicao();
+    } else {
+      renderCard(recipesFiltered);
     }
   }, []);
 
@@ -92,30 +95,34 @@ export default function Foods() {
   return (
     <div className="main-foods">
       <Header />
-      <h1 data-testid="page-title">Foods</h1>
-      {
-        categories.map((categoryName) => (
-          <button
-            key={ categoryName }
-            type="button"
-            data-testid={ `${categoryName}-category-filter` }
-            onClick={ (event) => filterByCategory(event) }
-            value={ categoryName }
-          >
-            {categoryName}
-          </button>))
-      }
-      {
+      <h1 data-testid="page-title" className="page-title">Foods</h1>
+      <div className="category-container">
+        {
+          categories.map((categoryName) => (
+            <button
+              key={ categoryName }
+              type="button"
+              data-testid={ `${categoryName}-category-filter` }
+              onClick={ (event) => filterByCategory(event) }
+              value={ categoryName }
+              className="category-button"
+            >
+              {categoryName}
+            </button>))
+        }
         <button
           type="button"
           data-testid="All-category-filter"
           onClick={ removeFilter }
           value="All"
+          className="category-button"
         >
           All
         </button>
-      }
-      {cards}
+      </div>
+      <div className="cards-container">
+        {cards}
+      </div>
       <MenuInferior />
     </div>
   );

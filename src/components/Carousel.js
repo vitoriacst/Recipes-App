@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import '../styles/Carousel.css';
 import PropTypes from 'prop-types';
 import AppContext from '../context/AppContext';
+import arrowLeft from '../assets/arrowLeft.svg';
+import arrowRigth from '../assets/arrowRigth.svg';
 
 function Carousel(props) {
   const {
@@ -60,7 +62,7 @@ function Carousel(props) {
             onClick={ handlePrevious }
             className="previous-btn"
           >
-            VOLTAR
+            <img src={ arrowLeft } alt="arrow" />
           </button>
           <div className="items-wrapper">
             <div className="items">
@@ -87,7 +89,8 @@ function Carousel(props) {
             onClick={ handleNext }
             className="next-btn"
           >
-            PRÓXIMO
+            <img src={ arrowRigth } alt="arrow" />
+
           </button>
         </div>
       )}

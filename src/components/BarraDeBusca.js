@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
+import '../styles/BarraDeBusca.css';
 
 function BarraDeBusca() {
   const {

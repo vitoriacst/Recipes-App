@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import FavoriteCard from '../components/FavoriteCard';
 import AppContext from '../context/AppContext';
+import '../styles/Favorites.css';
 
 const FavoritesRecipes = () => {
   const recipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -27,39 +28,46 @@ const FavoritesRecipes = () => {
   }, [favoriteRecipes, filter]);
 
   return (
-    <>
+    <div className="favorite-recipes">
       <Header />
-      <h1 data-testid="page-title">Favorite Recipes</h1>
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ () => setFilter('All') }
-      >
-        All
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ () => setFilter('food') }
-      >
-        Food
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ () => setFilter('drink') }
-      >
-        Drinks
-      </button>
+      <h1 data-testid="page-title" className="favorites-title">Favorite Recipes</h1>
+      <div className="favorites-buttons">
+        <button
+          className="filter-button"
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ () => setFilter('All') }
+        >
+          All
+        </button>
+        <button
+          className="filter-button"
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ () => setFilter('food') }
+        >
+          Food
+        </button>
+        <button
+          className="filter-button"
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ () => setFilter('drink') }
+        >
+          Drinks
+        </button>
+      </div>
       {filtered.map((recipe, index) => (
-        <FavoriteCard
-          recipeDone={ recipe }
-          link={ `/${recipe.type}s/${recipe.id}` }
-          index={ index }
-          key={ index }
-        />
+        <div className="cards" key={ index }>
+          <FavoriteCard
+            recipeDone={ recipe }
+            link={ `/${recipe.type}s/${recipe.id}` }
+            index={ index }
+            key={ index }
+          />
+        </div>
       ))}
-    </>
+    </div>
   );
 };
 

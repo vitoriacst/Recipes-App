@@ -1,0 +1,13 @@
+.done-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.done-image {
+    width: 100px;
+}
+
+.done-description {
+
+}

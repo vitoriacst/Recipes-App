@@ -1,0 +1,9 @@
+.category-button-drinks {
+  background-color: white;
+  padding: 8px 12px;
+}
+
+.category-container {
+  flex-wrap: wrap;
+  width: 80%;
+}

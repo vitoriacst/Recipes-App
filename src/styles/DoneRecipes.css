@@ -1,0 +1,55 @@
+.done-recipes {
+  background-color: rgb(80, 129, 80);
+  width: 100%;
+}
+
+.done-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.done-title {
+  margin-top: 30px;
+}
+
+.done-buttons {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.filter-button {
+  background-color: white;
+  padding: 8px 12px;
+  width: 100px;
+}
+
+.cards-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 100px;
+  width: 100%;
+}
+
+.cards {
+  border: 2px solid rgb(0, 0, 0);
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  margin-bottom: 25px;
+  padding: 5px;
+}
+
+.done-card {
+  align-items: center;
+  color: black;
+  display: flex;
+  justify-content: center;
+}

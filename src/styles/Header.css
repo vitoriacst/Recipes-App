@@ -6,15 +6,25 @@
 }
 
 .main-header {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 10px;
-  justify-content: space-between;
-  left: 0;
-  opacity: 0.9;
-  padding: 20px 50px;
-  top: 0;
   width: 100%;
+}
 
+.header {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  height: 50px;
+  justify-content: space-around;
+}
+
+
+.title-header {
+  color: black;
+  font-family: 'Rajdhani' , sans-serif;
+  font-size: 30px;
+  text-align: center;
+}
+
+.header-input {
+  background-color: #fff0;
 }

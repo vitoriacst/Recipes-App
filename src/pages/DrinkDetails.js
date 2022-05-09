@@ -91,7 +91,7 @@ function DrinkDetails() {
   }, [recipeDetails]);
 
   return (
-    <div>
+    <div className="main-details">
       <img
         className="recipe-photo"
         data-testid="recipe-photo"
@@ -112,31 +112,36 @@ function DrinkDetails() {
       </h3>
       { ingredients
         .map((ingredient, index) => (
-          <p
-            className="ingredient-name"
-            key={ index }
-            data-testid={ `${index}-ingredient-name-and-measure` }
-          >
-            {ingredient}
-          </p>))}
-      <p data-testid="instructions">{strInstructions}</p>
-      <input
-        className="share-btn"
-        type="image"
-        data-testid="share-btn"
-        onClick={ copyToClipBoard }
-        src={ shareIcon }
-        alt="share icon"
-      />
-      {linkCopied && <span>Link copied!</span>}
-      <input
-        className="favorite-btn"
-        type="image"
-        onClick={ handleFavorite }
-        data-testid="favorite-btn"
-        src={ recipeFavorite ? blackHeartIcon : whiteHeartIcon }
-        alt="favorite icon"
-      />
+          <div key={ index } className="main-ingredients">
+            <p
+              className="ingredient-name"
+              key={ index }
+              data-testid={ `${index}-ingredient-name-and-measure` }
+            >
+              {ingredient}
+            </p>
+          </div>
+        ))}
+      <p data-testid="instructions" className="main-instrucions">{strInstructions}</p>
+      <div className="buttons">
+        <input
+          className="share-btn"
+          type="image"
+          data-testid="share-btn"
+          onClick={ copyToClipBoard }
+          src={ shareIcon }
+          alt="share icon"
+        />
+        {linkCopied && <span>Link copied!</span>}
+        <input
+          className="favorite-btn"
+          type="image"
+          onClick={ handleFavorite }
+          data-testid="favorite-btn"
+          src={ recipeFavorite ? blackHeartIcon : whiteHeartIcon }
+          alt="favorite icon"
+        />
+      </div>
       <Carousel type="strMeal" />
       {!recipeDone && (
         <button

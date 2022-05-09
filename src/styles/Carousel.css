@@ -1,4 +1,3 @@
-/* !!! atenção ao mexer nesse CSS alguns requisitos dependem de display none !!!! */
 .items-wrapper {
   width: 80vw;
 }
@@ -25,7 +24,7 @@
 }
 
 .card {
-  height: 100%;
+  height: 150px;
   object-fit: cover;
   width: 100%;
 }
@@ -35,14 +34,6 @@
   display: flex;
   justify-content: center;
   margin: auto;
-}
-
-.previous-btn {
-  opacity: 0.5;
-}
-
-.next-btn {
-  opacity: 0.5;
 }
 
 .previous-btn:hover, .next-btn:hover {

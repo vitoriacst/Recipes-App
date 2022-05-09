@@ -9,6 +9,8 @@ import {
   removeFavorite,
   thisRecipeIsFavorite } from '../helpers/recipeState';
 
+import '../styles/DoneCard.css';
+
 function DoneCard(props) {
   const [linkCopied, setLinkCopied] = useState(false);
   const [recipeFavorite, setRecipeFavorite] = useState(false);
@@ -52,7 +54,7 @@ function DoneCard(props) {
   }, []);
 
   return (
-    <div>
+    <div className="done-card">
       <Link to={ link }>
         <input
           type="image"
@@ -60,20 +62,25 @@ function DoneCard(props) {
           data-testid={ `${index}-horizontal-image` }
           src={ image }
           alt={ index }
+          className="done-image"
         />
-        <h1 data-testid={ `${index}-horizontal-name` }>
-          {name}
-        </h1>
       </Link>
-      <p data-testid={ `${index}-horizontal-top-text` }>
-        {nationality}
-        {' - '}
-        {category}
-        {alcoholicOrNot}
-      </p>
-      <p data-testid={ `${index}-horizontal-done-date` }>
-        {doneDate}
-      </p>
+      <div className="done-description">
+        <Link to={ link }>
+          <h1 data-testid={ `${index}-horizontal-name` }>
+            {name}
+          </h1>
+        </Link>
+        <p data-testid={ `${index}-horizontal-top-text` }>
+          {nationality}
+          {' - '}
+          {category}
+          {alcoholicOrNot}
+        </p>
+        <p data-testid={ `${index}-horizontal-done-date` }>
+          {doneDate}
+        </p>
+      </div>
       <input
         className="share-btn"
         type="image"

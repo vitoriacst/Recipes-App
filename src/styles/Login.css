@@ -1,8 +1,115 @@
-.login-container {
-  align-items: center;
-  background: #383737;
-  display: flex;
-  height: 65rem;
-  justify-content: space-around;
+/* stylelint-disable value-list-comma-space-before */
+/* stylelint-disable no-missing-end-of-source-newline */
+/* stylelint-disable font-family-name-quotes */
+/* stylelint-disable color-named */
+/* stylelint-disable block-opening-brace-space-before */
+/* stylelint-disable declaration-empty-line-before */
+/* stylelint-disable order/properties-alphabetical-order */
+/* stylelint-disable length-zero-no-unit */
+/* stylelint-disable indentation */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
+* {
+  border: 0;
+  margin: 0;
+}
 
+.login-container {
+  background: rgba(79, 148, 109, 1);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.form-input{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 300px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid #000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  padding: 60px 20px;
+  gap: 20px;
+  z-index: 1;
+}
+
+.login-input{
+  width: 90%;
+  border-radius: 8px;
+  padding: 10px;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.button {
+  background-color: rgb(255, 255, 255);
+  height: 40px;
+  width: 70%;
+  padding: 0 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #444;
+  cursor: pointer;
+  border: none;
+  transition: all 0.5s ease;
+  font-family: 'Rajdhani', sans-serif;
+  letter-spacing: 2px;
+}
+
+button:disabled {
+  background-color: #ccc;
+}
+
+.button:hover {
+  background-color: rgba(79, 148, 109, 1);
+  color: #fff;
+}
+
+.form-title{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 30px;
+  width: 80%;
+  color: white;
+  text-align: center;
+}
+
+.wave-logo {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.hand-img {
+  position: absolute;
+  bottom: 0;
+}
+
+.left {
+  left: 20px;
+}
+
+.right {
+  right: 20px;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255);        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(46, 152, 38);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid rgb(0, 48, 41);  /* creates padding around scroll thumb */
 }

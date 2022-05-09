@@ -25,21 +25,29 @@ export default function Header() {
   return (
     <div className="main-header">
       <header
-        data-testid="page-title"
+        data-testid="header"
+        className="header"
       >
         <Link to="/profile">
           <button
             type="button"
-
+            className="header-input"
           >
-            <img src={ profileIcon } alt="profile icon" data-testid="profile-top-btn" />
+            <img
+              src={ profileIcon }
+              alt="profile icon"
+              data-testid="profile-top-btn"
+              className="profile-icon"
+            />
           </button>
         </Link>
+        <h1 className="title-header">App de Receitas</h1>
         {
           !notRender.includes(match.path)
         && (
           <button
             type="button"
+            className="header-input"
             onClick={ () => setSearchBar(!searchBar) }
           >
             <img src={ searchIcon } alt=" search icon" data-testid="search-top-btn" />

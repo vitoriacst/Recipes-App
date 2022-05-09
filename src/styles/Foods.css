@@ -1,0 +1,40 @@
+.main-foods {
+  align-items: center;
+  background: #4f946d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.category-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.category-button {
+  background-color: white;
+  padding: 8px 12px;
+  width: 100px;
+}
+
+.cards-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 100px;
+  width: 100%;
+}
+
+.page-title {
+  font-family: 'Rajdhani' , sans-serif;
+  margin-top: 30px;
+}

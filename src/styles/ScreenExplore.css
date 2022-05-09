@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+
+.main-explore {
+  align-items: center;
+  background-color: rgb(71, 124, 71);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+}
+
+.content-explore {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+
+.explore-button {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  font-size: 18px;
+  height: 70px;
+  letter-spacing: 2px;
+  padding: 0 10px;
+  transition: all 0.5s ease;
+  width: 16rem;
+  z-index: 1;
+}
+
+.explore-wave {
+  left: 0;
+  position: absolute;
+  top: -30px;
+  z-index: 0;
+}
+
+.title {
+  font-family: 'Koulen' , cursive;
+}
