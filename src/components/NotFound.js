@@ -1,8 +1,11 @@
 import React from 'react';
+import NotFoundImg from '../assets/NotFound.gif';
 
 function NotFound() {
   return (
-    <div>Not Found</div>
+    <div>
+      <img src={ NotFoundImg } alt="error" />
+    </div>
   );
 }
 export default NotFound;

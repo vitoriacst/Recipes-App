@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
+import '../styles/ExploreButtons.css';
 
 function ExploreDrinksFoods() {
   const [randomUrl, setUrlRandom] = useState();
@@ -42,8 +43,13 @@ function ExploreDrinksFoods() {
       {
         foodRender.includes(match.path) && (
           <Link to="/explore/foods/ingredients">
-            <button type="button" data-testid="explore-by-ingredient">
+            <button
+              type="button"
+              data-testid="explore-by-ingredient"
+              className="button-filter"
+            >
               By Ingredient
+
             </button>
           </Link>
         )
@@ -52,7 +58,11 @@ function ExploreDrinksFoods() {
       {
         notRender.includes(match.path) && (
           <Link to="/explore/drinks/ingredients">
-            <button type="button" data-testid="explore-by-ingredient">
+            <button
+              type="button"
+              data-testid="explore-by-ingredient"
+              className="button-filter"
+            >
               By Ingredient
             </button>
           </Link>
@@ -62,7 +72,11 @@ function ExploreDrinksFoods() {
         !notRender.includes(match.path)
         && (
           <Link to="/explore/foods/nationalities">
-            <button type="button" data-testid="explore-by-nationality">
+            <button
+              type="button"
+              data-testid="explore-by-nationality"
+              className="button-filter"
+            >
               By Nationality
             </button>
           </Link>
@@ -73,6 +87,8 @@ function ExploreDrinksFoods() {
         <button
           type="button"
           data-testid="explore-surprise"
+          className="button-filter"
+
         >
           Surprise me!
         </button>
