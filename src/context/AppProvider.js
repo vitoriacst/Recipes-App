@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import AppContext from './AppContext';
 
+// teste
+
 function AppProvider(props) {
   const { children } = props;
   const INITIAL_BTN = {
