@@ -1,4 +1,4 @@
-## Recipes App ##
+## 👨‍🍳 Recipes App ##
 
 ![image](https://user-images.githubusercontent.com/86388276/190432672-abf00021-71ed-466c-82b8-a999c02fc57a.png)
 
