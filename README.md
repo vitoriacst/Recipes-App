@@ -1,6 +1,6 @@
 ## 👨‍🍳 Recipes App ##
 
-![image](https://user-images.githubusercontent.com/86388276/190432672-abf00021-71ed-466c-82b8-a999c02fc57a.png)
+![mobile (5)](https://user-images.githubusercontent.com/86388276/191773431-c2ef88b6-9b76-4c16-8ed2-c46d69b8a175.png)
 
 
 # 📕Descrição
